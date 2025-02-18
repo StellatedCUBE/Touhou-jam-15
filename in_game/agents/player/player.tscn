@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6vwsua87in1e"]
+
+[ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_hk1q4"]
+[ext_resource type="Texture2D" uid="uid://8yvbdys3xnht" path="res://in_game/agents/player/player.png" id="2_vmhip"]
+[ext_resource type="Script" path="res://in_game/agents/player/player.gd" id="3_dy4yo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_of7if"]
+atlas = ExtResource("2_vmhip")
+region = Rect2(0, 40, 16, 24)
+
+[node name="Player" instance=ExtResource("1_hk1q4")]
+texture = SubResource("AtlasTexture_of7if")
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2(0, -0.25)
+scale = Vector2(0.0625, 0.0625)
+texture = SubResource("AtlasTexture_of7if")
+
+[node name="Behaviour" type="Node" parent="." index="2"]
+script = ExtResource("3_dy4yo")

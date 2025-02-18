@@ -1,3 +1,47 @@
-[gd_scene format=3 uid="uid://cve1wciliwsfw"]
+[gd_scene load_steps=8 format=4 uid="uid://cve1wciliwsfw"]
 
-[node name="TileMap" type="TileMapLayer"]
+[ext_resource type="Texture2D" uid="uid://dq20gyx55vaad" path="res://in_game/tiles/tiles.png" id="1_2qfij"]
+[ext_resource type="Script" path="res://in_game/input.gd" id="1_mnskf"]
+[ext_resource type="Script" path="res://in_game/tiles/tile_map.gd" id="1_wg7vq"]
+[ext_resource type="PackedScene" uid="uid://c6vwsua87in1e" path="res://in_game/agents/player/player.tscn" id="3_6c2bh"]
+[ext_resource type="Script" path="res://in_game/camera.gd" id="4_mlnax"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pyfeq"]
+texture = ExtResource("1_2qfij")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+2:1/0 = 0
+2:1/0/custom_data_0 = true
+3:1/0 = 0
+3:1/0/custom_data_0 = true
+
+[sub_resource type="TileSet" id="TileSet_iqs8v"]
+custom_data_layer_0/name = "Solid"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_pyfeq")
+
+[node name="World" type="Node2D"]
+
+[node name="Input" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_mnskf")
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+unique_name_in_owner = true
+scale = Vector2(0.0625, 0.0625)
+tile_map_data = PackedByteArray("AAABAAEAAAACAAAAAAACAAEAAAACAAAAAAADAAEAAAACAAAAAAAEAAEAAAACAAAAAAAFAAEAAAACAAAAAAAGAAEAAAACAAAAAAAHAAEAAAACAAAAAAAHAAIAAAACAAAAAAAHAAMAAAACAAAAAAAHAAQAAAACAAAAAAAHAAUAAAACAAAAAAAGAAUAAAACAAAAAAAFAAUAAAACAAAAAAAEAAUAAAACAAAAAAADAAUAAAACAAAAAAACAAUAAAACAAAAAAABAAUAAAACAAAAAAABAAQAAAACAAAAAAABAAMAAAACAAAAAAABAAIAAAACAAAAAAACAAIAAAACAAAAAAADAAIAAAACAAAAAAAEAAIAAAACAAAAAAAFAAIAAAACAAAAAAAGAAIAAAACAAAAAAAGAAMAAAACAAAAAAAGAAQAAAACAAAAAAAFAAQAAAACAAAAAAAEAAQAAAACAAAAAAADAAQAAAACAAAAAAACAAQAAAACAAAAAAACAAMAAAABAAEAAAADAAMAAAACAAAAAAAEAAMAAAACAAAAAAAFAAMAAAACAAAAAAAAAAYAAAABAAEAAAAAAAUAAAABAAEAAAAAAAQAAAABAAEAAAAAAAMAAAABAAEAAAAAAAIAAAABAAEAAAAAAAEAAAABAAEAAAAAAAAAAAABAAEAAAABAAAAAAABAAEAAAACAAAAAAABAAEAAAADAAAAAAABAAEAAAAEAAAAAAABAAEAAAAFAAAAAAABAAEAAAAGAAAAAAABAAEAAAAHAAAAAAABAAEAAAAIAAAAAAABAAEAAAAIAAEAAAABAAEAAAAIAAIAAAABAAEAAAAIAAMAAAABAAEAAAAIAAQAAAABAAEAAAAIAAUAAAABAAEAAAAIAAYAAAABAAEAAAAHAAYAAAABAAEAAAAGAAYAAAABAAEAAAAFAAYAAAABAAEAAAAEAAYAAAABAAEAAAADAAYAAAABAAEAAAACAAYAAAABAAEAAAABAAYAAAABAAEAAAA=")
+tile_set = SubResource("TileSet_iqs8v")
+collision_enabled = false
+navigation_enabled = false
+script = ExtResource("1_wg7vq")
+
+[node name="MainCamera" type="Camera2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_mlnax")
+
+[node name="Player" parent="." instance=ExtResource("3_6c2bh")]
+position = Vector2(4.5, 3.5)

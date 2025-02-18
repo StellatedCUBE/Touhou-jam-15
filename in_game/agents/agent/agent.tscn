@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjt1ov1qqpnl2"]
+
+[ext_resource type="Script" path="res://in_game/agents/agent/agent.gd" id="1_046vr"]
+[ext_resource type="Texture2D" uid="uid://hpimifnlp52q" path="res://icon.svg" id="2_7kd04"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1p18d"]
+size = Vector2(1, 1)
+
+[node name="Agent" type="Node2D"]
+script = ExtResource("1_046vr")
+texture = ExtResource("2_7kd04")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="Rect" type="CollisionShape2D" parent="Area"]
+shape = SubResource("RectangleShape2D_1p18d")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.0078125, 0.0078125)
+texture = ExtResource("2_7kd04")
