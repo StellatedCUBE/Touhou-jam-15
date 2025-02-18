@@ -31,3 +31,52 @@ func move(by: Vector2) -> bool:
 		position -= by
 		return false
 	return true
+
+func size(to: float) -> bool:
+	var current: float = scale.x
+	scale = Vector2.ONE * to
+	
+	if to <= current or not collides():
+		return true
+	
+	var shift: float = (to - current) / 2
+	var cpos: Vector2 = position
+
+	position = cpos + Vector2(shift, 0)
+	if not collides():
+		return true
+		
+	position = cpos - Vector2(shift, 0)
+	if not collides():
+		return true
+		
+	position = cpos + Vector2(0, shift)
+	if not collides():
+		return true
+	
+	position = cpos - Vector2(0, shift)
+	if not collides():
+		return true
+	
+	position = cpos + Vector2(shift, shift)
+	if not collides():
+		return true
+		
+	position = cpos - Vector2(shift, shift)
+	if not collides():
+		return true
+		
+	position = cpos + Vector2(-shift, shift)
+	if not collides():
+		return true
+	
+	position = cpos - Vector2(-shift, shift)
+	if not collides():
+		return true
+	
+	position = cpos
+	scale = Vector2.ONE * current
+	return false
+
+func change_size(by: float) -> bool:
+	return size(scale.x + by)

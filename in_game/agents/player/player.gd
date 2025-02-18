@@ -11,3 +11,6 @@ func _physics_process(_delta: float) -> void:
 	if input.right: agent.move(Vector2(speed, 0))
 	if input.up: agent.move(Vector2(0, -speed))
 	if input.down: agent.move(Vector2(0, speed))
+	
+	if input.shrink and agent.scale.x > speed * 1.5: agent.change_size(-speed)
+	if input.expand: agent.change_size(speed)

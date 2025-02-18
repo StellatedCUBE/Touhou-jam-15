@@ -6,6 +6,9 @@ var right: bool = false
 var up: bool = false
 var down: bool = false
 
+var shrink: bool = false
+var expand: bool = false
+
 func _process(_delta: float) -> void:
 	var kleft: bool = Input.is_key_pressed(KEY_LEFT)
 	var kright: bool = Input.is_key_pressed(KEY_RIGHT)
@@ -15,3 +18,6 @@ func _process(_delta: float) -> void:
 	right = kright and not kleft
 	up = kup and not kdown
 	down = kdown and not kup
+
+	shrink = Input.is_key_pressed(KEY_Z)
+	expand = Input.is_key_pressed(KEY_A)
