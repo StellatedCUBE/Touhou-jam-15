@@ -1,12 +1,53 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6vwsua87in1e"]
+[gd_scene load_steps=13 format=3 uid="uid://c6vwsua87in1e"]
 
 [ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_hk1q4"]
 [ext_resource type="Texture2D" uid="uid://8yvbdys3xnht" path="res://in_game/agents/player/player.png" id="2_vmhip"]
 [ext_resource type="Script" path="res://in_game/agents/player/player.gd" id="3_dy4yo"]
+[ext_resource type="Texture2D" uid="uid://b0e3arqd7c80o" path="res://in_game/agents/player/spin.png" id="4_x37yo"]
+[ext_resource type="Script" path="res://autoplay.gd" id="5_5m2jw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_of7if"]
 atlas = ExtResource("2_vmhip")
 region = Rect2(0, 40, 16, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pabtr"]
+atlas = ExtResource("4_x37yo")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fofm1"]
+atlas = ExtResource("4_x37yo")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ulcn"]
+atlas = ExtResource("4_x37yo")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb0bv"]
+atlas = ExtResource("4_x37yo")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fs2xc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pabtr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fofm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ulcn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb0bv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_84o78"]
+radius = 1.13
 
 [node name="Player" instance=ExtResource("1_hk1q4")]
 texture = SubResource("AtlasTexture_of7if")
@@ -18,3 +59,20 @@ texture = SubResource("AtlasTexture_of7if")
 
 [node name="Behaviour" type="Node" parent="." index="2"]
 script = ExtResource("3_dy4yo")
+
+[node name="Spin" type="AnimatedSprite2D" parent="." index="3"]
+unique_name_in_owner = true
+visible = false
+scale = Vector2(0.0625, 0.0625)
+sprite_frames = SubResource("SpriteFrames_fs2xc")
+frame_progress = 0.0544958
+script = ExtResource("5_5m2jw")
+
+[node name="SpinArea" type="Area2D" parent="." index="4"]
+visible = false
+collision_mask = 0
+
+[node name="Circle" type="CollisionShape2D" parent="SpinArea" index="0"]
+position = Vector2(0, -0.125)
+shape = SubResource("CircleShape2D_84o78")
+disabled = true

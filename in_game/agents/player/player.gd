@@ -2,6 +2,8 @@ extends Node
 
 @onready var agent: Agent = get_parent()
 @onready var input: InputManager = get_tree().root.get_node("World/%Input")
+@onready var sprite: Sprite2D = %Sprite
+@onready var spin_animation: AnimatedSprite2D = %Spin
 
 @export var speed: float = 0.0625
 @export var adjust: float = 0.25
@@ -42,6 +44,9 @@ func _physics_process(_delta: float) -> void:
 	
 	if input.shrink and miasma > 0.125: miasma -= 0.125
 	if input.expand: miasma += 0.125
+	
+	spin_animation.visible = input.spin
+	sprite.visible = not input.spin
 
 func miasma_to_scale(miasma: float) -> float:
 	if miasma >= 20:

@@ -11,10 +11,12 @@ script = ExtResource("1_046vr")
 texture = ExtResource("2_7kd04")
 
 [node name="Area" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="Rect" type="CollisionShape2D" parent="Area"]
 shape = SubResource("RectangleShape2D_1p18d")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 scale = Vector2(0.0078125, 0.0078125)
 texture = ExtResource("2_7kd04")

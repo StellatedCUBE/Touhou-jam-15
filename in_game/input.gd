@@ -6,6 +6,8 @@ var right: bool = false
 var up: bool = false
 var down: bool = false
 
+var spin: bool = false 
+
 var shrink: bool = false
 var expand: bool = false
 
@@ -19,5 +21,7 @@ func _process(_delta: float) -> void:
 	up = kup and not (kleft or kright or kdown)
 	down = kdown and not (kleft or kright or kup)
 
-	shrink = Input.is_key_pressed(KEY_Z)
-	expand = Input.is_key_pressed(KEY_A)
+	spin = Input.is_key_pressed(KEY_Z)
+
+	shrink = Input.is_key_pressed(KEY_PAGEDOWN)
+	expand = Input.is_key_pressed(KEY_PAGEUP)
