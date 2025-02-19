@@ -32,6 +32,36 @@ func move(by: Vector2) -> bool:
 		return false
 	return true
 
+func move_x(by: float, adjust: float) -> bool:
+	if move(Vector2(by, 0)):
+		return true
+		
+	var s: float = scale.x / 2
+	var y: float = global_position.y + s
+	if y - floor(y) <= adjust:
+		return move(Vector2(by, floor(y) - y))
+	
+	y = global_position.y - s
+	if ceil(y) - y <= adjust:
+		return move(Vector2(by, ceil(y) - y))
+	
+	return false
+
+func move_y(by: float, adjust: float) -> bool:
+	if move(Vector2(0, by)):
+		return true
+		
+	var s: float = scale.x / 2
+	var x: float = global_position.x + s
+	if x - floor(x) <= adjust:
+		return move(Vector2(floor(x) - x, by))
+	
+	x = global_position.x - s
+	if ceil(x) - x <= adjust:
+		return move(Vector2(ceil(x) - x, by))
+	
+	return false
+
 func size(to: float) -> bool:
 	var current: float = scale.x
 	scale = Vector2.ONE * to
