@@ -16,12 +16,20 @@ texture = ExtResource("1_2qfij")
 1:1/0/custom_data_0 = true
 2:1/0 = 0
 2:1/0/custom_data_0 = true
+2:1/0/custom_data_1 = 10
+2:1/0/custom_data_2 = Vector2i(2, 0)
 3:1/0 = 0
 3:1/0/custom_data_0 = true
+3:1/0/custom_data_1 = 20
+3:1/0/custom_data_2 = Vector2i(2, 0)
 
 [sub_resource type="TileSet" id="TileSet_iqs8v"]
 custom_data_layer_0/name = "Solid"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "SpinBreakMiasmaRequirement"
+custom_data_layer_1/type = 2
+custom_data_layer_2/name = "DestroysInto"
+custom_data_layer_2/type = 6
 sources/0 = SubResource("TileSetAtlasSource_pyfeq")
 
 [node name="World" type="Node2D"]
@@ -39,9 +47,11 @@ collision_enabled = false
 navigation_enabled = false
 script = ExtResource("1_wg7vq")
 
+[node name="Agents" type="Node" parent="."]
+
+[node name="Player" parent="Agents" instance=ExtResource("3_6c2bh")]
+position = Vector2(4.5, 3.5)
+
 [node name="MainCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_mlnax")
-
-[node name="Player" parent="." instance=ExtResource("3_6c2bh")]
-position = Vector2(4.5, 3.5)

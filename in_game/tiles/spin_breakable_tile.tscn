@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp1r7jhs4ncvu"]
+
+[ext_resource type="Script" path="res://in_game/tiles/spin_breakable_tile.gd" id="1_o7cjx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p642"]
+size = Vector2(1, 1)
+
+[node name="SpinBreakableTile" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_o7cjx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2p642")
