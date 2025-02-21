@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsosinh0cadee"]
+
+[ext_resource type="Script" path="res://in_game/agents/player/explosion/explosion.gd" id="1_a830p"]
+[ext_resource type="Texture2D" uid="uid://b68axdd5pepxa" path="res://in_game/agents/player/explosion/explosion.png" id="1_mkjh2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8akxq"]
+radius = 44.0
+
+[node name="Explosion" type="Node2D"]
+scale = Vector2(0.06125, 0.06125)
+script = ExtResource("1_a830p")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_mkjh2")
+
+[node name="ExplosionArea" type="Area2D" parent="Sprite"]
+collision_mask = 0
+
+[node name="Circle" type="CollisionShape2D" parent="Sprite/ExplosionArea"]
+shape = SubResource("CircleShape2D_8akxq")

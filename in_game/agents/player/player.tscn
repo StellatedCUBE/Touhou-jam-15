@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6vwsua87in1e"]
+[gd_scene load_steps=19 format=3 uid="uid://c6vwsua87in1e"]
 
 [ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_hk1q4"]
 [ext_resource type="Texture2D" uid="uid://8yvbdys3xnht" path="res://in_game/agents/player/player.png" id="2_vmhip"]
 [ext_resource type="Script" path="res://in_game/agents/player/player.gd" id="3_dy4yo"]
 [ext_resource type="Texture2D" uid="uid://b0e3arqd7c80o" path="res://in_game/agents/player/spin.png" id="4_x37yo"]
+[ext_resource type="Texture2D" uid="uid://cdkht6weplswr" path="res://in_game/agents/player/cast_explosion.png" id="5_rlhs5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_of7if"]
 atlas = ExtResource("2_vmhip")
@@ -48,10 +49,54 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_84o78"]
 radius = 1.13
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_082kw"]
+atlas = ExtResource("5_rlhs5")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksn1p"]
+atlas = ExtResource("5_rlhs5")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fa8u5"]
+atlas = ExtResource("5_rlhs5")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22edu"]
+atlas = ExtResource("5_rlhs5")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa3pj"]
+atlas = ExtResource("5_rlhs5")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0vbcw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_082kw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksn1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fa8u5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22edu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa3pj")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="Player" instance=ExtResource("1_hk1q4")]
 texture = SubResource("AtlasTexture_of7if")
 
 [node name="Sprite" parent="." index="1"]
+visible = false
 position = Vector2(0, -0.25)
 scale = Vector2(0.0625, 0.0625)
 texture = SubResource("AtlasTexture_of7if")
@@ -76,3 +121,12 @@ unique_name_in_owner = true
 position = Vector2(0, -0.125)
 shape = SubResource("CircleShape2D_84o78")
 disabled = true
+
+[node name="CastExplosion" type="AnimatedSprite2D" parent="." index="5"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(0, -0.5)
+scale = Vector2(0.0625, 0.0625)
+sprite_frames = SubResource("SpriteFrames_0vbcw")
+frame = 4
+frame_progress = 1.0

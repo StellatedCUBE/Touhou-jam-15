@@ -7,7 +7,9 @@ var up: bool = false
 var down: bool = false
 
 var kspin: bool = false
-var spin: bool = false 
+var spin: bool = false
+var kexplode: bool = false
+var explode: bool = false
 
 var shrink: bool = false
 var expand: bool = false
@@ -26,6 +28,11 @@ func _process(_delta: float) -> void:
 	kspin = Input.is_key_pressed(KEY_Z)
 	if kspin and not lkspin:
 		spin = true
+	
+	var lkexplode: bool = kexplode
+	kexplode = Input.is_key_pressed(KEY_X)
+	if kexplode and not lkexplode:
+		explode = true
 
 	shrink = Input.is_key_pressed(KEY_PAGEDOWN)
 	expand = Input.is_key_pressed(KEY_PAGEUP)
@@ -33,5 +40,11 @@ func _process(_delta: float) -> void:
 func consume_spin() -> bool:
 	if spin:
 		spin = false
+		return true
+	return false
+
+func consume_explode() -> bool:
+	if explode:
+		explode = false
 		return true
 	return false
