@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgqq0x58qodkc"]
+
+[ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="1_rvanm"]
+[ext_resource type="Texture2D" uid="uid://bey0bogftm63x" path="res://in_game/agents/beetle/beetle.png" id="2_37w1u"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3yyy"]
+atlas = ExtResource("2_37w1u")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkfnx"]
+atlas = ExtResource("2_37w1u")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry1op"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3yyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkfnx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Beetle" instance=ExtResource("1_rvanm")]
+
+[node name="Animation" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_ry1op")
+frame = 0
+frame_progress = 0.354718
+
+[node name="Behaviour" parent="." index="3"]
+health = 3
+damage = 2

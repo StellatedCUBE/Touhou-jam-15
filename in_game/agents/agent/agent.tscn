@@ -11,6 +11,7 @@ script = ExtResource("1_046vr")
 texture = ExtResource("2_7kd04")
 
 [node name="Area" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 2
 
 [node name="Rect" type="CollisionShape2D" parent="Area"]

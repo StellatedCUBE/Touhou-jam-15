@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://s0pkviaj0tvi"]
+
+[ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_6lwtl"]
+[ext_resource type="Texture2D" uid="uid://b687cap30mxvw" path="res://in_game/agents/onibi/onibi.png" id="2_47ou6"]
+[ext_resource type="Script" path="res://in_game/agents/agent/enemy.gd" id="3_foff6"]
+[ext_resource type="Script" path="res://autoplay.gd" id="3_vacvu"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dpl8"]
+atlas = ExtResource("2_47ou6")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ng6x8"]
+atlas = ExtResource("2_47ou6")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w2agt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dpl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ng6x8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Onibi" instance=ExtResource("1_6lwtl")]
+
+[node name="Sprite" parent="." index="1"]
+visible = false
+
+[node name="Animation" type="AnimatedSprite2D" parent="." index="2"]
+scale = Vector2(0.06125, 0.06125)
+sprite_frames = SubResource("SpriteFrames_w2agt")
+frame = 1
+frame_progress = 0.247741
+script = ExtResource("3_vacvu")
+
+[node name="Behaviour" type="Node" parent="." index="3"]
+script = ExtResource("3_foff6")

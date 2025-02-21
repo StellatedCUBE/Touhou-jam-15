@@ -95,6 +95,9 @@ animations = [{
 [node name="Player" instance=ExtResource("1_hk1q4")]
 texture = SubResource("AtlasTexture_of7if")
 
+[node name="Area" parent="." index="0"]
+collision_layer = 1
+
 [node name="Sprite" parent="." index="1"]
 position = Vector2(0, -0.21875)
 scale = Vector2(0.0625, 0.0625)

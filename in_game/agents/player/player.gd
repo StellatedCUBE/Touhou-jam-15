@@ -21,6 +21,8 @@ var explosion: PackedScene = preload("res://in_game/agents/player/explosion/expl
 
 var step_anim_counter: int = 0
 
+var iframes: int = 0
+
 func _physics_process(_delta: float) -> void:
 	var scale: float = agent.scale.x
 	var speed_mul: float = 1
@@ -72,7 +74,7 @@ func _physics_process(_delta: float) -> void:
 	
 	cast_explosion_animation.visible = cast_explosion_animation.is_playing()
 	
-	sprite.visible = spin_timer == 0 and not cast_explosion_animation.is_playing()
+	sprite.visible = spin_timer == 0 and not cast_explosion_animation.is_playing() and iframes % 2 == 0
 	
 	var frame_y: int
 	if moving:
@@ -83,6 +85,9 @@ func _physics_process(_delta: float) -> void:
 		frame_y = 2
 	
 	(sprite.texture as AtlasTexture).region = Rect2(16 * facing, frame_y * 24 + 1, 16, 23)
+	
+	if iframes > 0:
+		iframes -= 1
 
 func misfortune_to_scale(misfortune: float) -> float:
 	if misfortune >= 20:
@@ -98,3 +103,12 @@ func explode() -> void:
 	instance.global_position = agent.global_position
 	misfortune -= explosion_cost
 	cast_explosion_animation.play()
+
+func damage(by: int) -> void:
+	if iframes == 0:
+		health -= by
+		iframes = 20
+
+func grant_misfortune() -> void:
+	if misfortune < 20:
+		misfortune += 1

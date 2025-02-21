@@ -1,0 +1,38 @@
+[gd_scene load_steps=7 format=3 uid="uid://b62jqmc8l58qp"]
+
+[ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="1_5lajc"]
+[ext_resource type="Texture2D" uid="uid://j1xogte33tvm" path="res://in_game/agents/fairy/fairy.png" id="2_h6gwl"]
+[ext_resource type="PackedScene" uid="uid://dqhvjqiqigwa" path="res://in_game/agents/fairy/projectile.tscn" id="3_f7tmf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yo2tl"]
+atlas = ExtResource("2_h6gwl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32hhe"]
+atlas = ExtResource("2_h6gwl")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_aoef0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yo2tl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32hhe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[node name="Fairy" instance=ExtResource("1_5lajc")]
+
+[node name="Animation" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_aoef0")
+frame = 0
+frame_progress = 0.700048
+
+[node name="Behaviour" parent="." index="3"]
+health = 2
+projectile = ExtResource("3_f7tmf")
