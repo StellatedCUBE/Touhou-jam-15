@@ -8,7 +8,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_of7if"]
 atlas = ExtResource("2_vmhip")
-region = Rect2(0, 40, 16, 24)
+region = Rect2(1.45519e-11, 49, 16, 23)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pabtr"]
 atlas = ExtResource("4_x37yo")
@@ -96,8 +96,7 @@ animations = [{
 texture = SubResource("AtlasTexture_of7if")
 
 [node name="Sprite" parent="." index="1"]
-visible = false
-position = Vector2(0, -0.25)
+position = Vector2(0, -0.21875)
 scale = Vector2(0.0625, 0.0625)
 texture = SubResource("AtlasTexture_of7if")
 

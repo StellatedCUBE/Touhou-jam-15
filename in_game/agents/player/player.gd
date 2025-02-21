@@ -16,8 +16,10 @@ class_name Player
 @export var explosion_cost: int = 10
 
 var spin_timer: int = 0
-var facing: Vector2 = Vector2.DOWN
+var facing: int = 0
 var explosion: PackedScene = preload("res://in_game/agents/player/explosion/explosion.tscn")
+
+var step_anim_counter: int = 0
 
 func _physics_process(_delta: float) -> void:
 	var scale: float = agent.scale.x
@@ -33,21 +35,23 @@ func _physics_process(_delta: float) -> void:
 		else:
 			speed_mul = 0.5
 	
+	var moving: bool = false
+	
 	if input.left:
-		agent.move_x(-speed * speed_mul, adjust * scale)
-		facing = Vector2.LEFT
+		moving = agent.move_x(-speed * speed_mul, adjust * scale)
+		facing = 3
 		
 	elif input.right:
-		agent.move_x(speed * speed_mul, adjust * scale)
-		facing = Vector2.RIGHT
+		moving = agent.move_x(speed * speed_mul, adjust * scale)
+		facing = 2
 		
 	elif input.up:
-		agent.move_y(-speed * speed_mul, adjust * scale)
-		facing = Vector2.UP
+		moving = agent.move_y(-speed * speed_mul, adjust * scale)
+		facing = 1
 		
 	elif input.down:
-		agent.move_y(speed * speed_mul, adjust * scale)
-		facing = Vector2.DOWN
+		moving = agent.move_y(speed * speed_mul, adjust * scale)
+		facing = 0
 	
 	if input.shrink and misfortune > 0.125: misfortune -= 1
 	if input.expand: misfortune += 1
@@ -70,6 +74,15 @@ func _physics_process(_delta: float) -> void:
 	
 	sprite.visible = spin_timer == 0 and not cast_explosion_animation.is_playing()
 	
+	var frame_y: int
+	if moving:
+		frame_y = step_anim_counter / 12 % 2
+		step_anim_counter += 1
+	else:
+		step_anim_counter = 0
+		frame_y = 2
+	
+	(sprite.texture as AtlasTexture).region = Rect2(16 * facing, frame_y * 24 + 1, 16, 23)
 
 func misfortune_to_scale(misfortune: float) -> float:
 	if misfortune >= 20:
