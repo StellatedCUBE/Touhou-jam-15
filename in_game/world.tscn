@@ -73,14 +73,14 @@ script = ExtResource("4_mlnax")
 [node name="UI" type="Node" parent="MainCamera"]
 
 [node name="Health" type="Node2D" parent="MainCamera/UI"]
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 0.438)
 scale = Vector2(0.0625, 0.0625)
 script = ExtResource("6_ru34o")
 icons = Array[Texture2D]([ExtResource("7_3x8ri"), ExtResource("8_4blvs"), ExtResource("9_kjgyc")])
 max = 10
 
 [node name="Misfortune" type="Node2D" parent="MainCamera/UI"]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.469, 1)
 scale = Vector2(0.0625, 0.0625)
 script = ExtResource("6_ru34o")
 icons = Array[Texture2D]([ExtResource("10_4xbse"), ExtResource("11_1th2a"), ExtResource("12_7q1dr"), ExtResource("13_yruyj"), ExtResource("14_g8fjn")])
