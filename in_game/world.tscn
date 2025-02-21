@@ -1,15 +1,12 @@
-[gd_scene load_steps=21 format=4 uid="uid://cve1wciliwsfw"]
+[gd_scene load_steps=18 format=4 uid="uid://cve1wciliwsfw"]
 
 [ext_resource type="Texture2D" uid="uid://dq20gyx55vaad" path="res://in_game/tiles/tiles.png" id="1_2qfij"]
 [ext_resource type="Script" path="res://in_game/input.gd" id="1_mnskf"]
 [ext_resource type="Script" path="res://in_game/tiles/tile_map.gd" id="1_wg7vq"]
 [ext_resource type="PackedScene" uid="uid://c6vwsua87in1e" path="res://in_game/agents/player/player.tscn" id="3_6c2bh"]
 [ext_resource type="Script" path="res://in_game/camera.gd" id="4_mlnax"]
-[ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="4_s5mb7"]
-[ext_resource type="PackedScene" uid="uid://b62jqmc8l58qp" path="res://in_game/agents/fairy/fairy.tscn" id="6_m8fu3"]
 [ext_resource type="Script" path="res://in_game/ui/icon_bar.gd" id="6_ru34o"]
 [ext_resource type="Texture2D" uid="uid://byr062vj8ovw0" path="res://in_game/ui/hp0.png" id="7_3x8ri"]
-[ext_resource type="PackedScene" uid="uid://bgqq0x58qodkc" path="res://in_game/agents/beetle/beetle.tscn" id="7_iacex"]
 [ext_resource type="Texture2D" uid="uid://bp1autbfu1msy" path="res://in_game/ui/hp1.png" id="8_4blvs"]
 [ext_resource type="Texture2D" uid="uid://de78oq8gsp2c0" path="res://in_game/ui/hp2.png" id="9_kjgyc"]
 [ext_resource type="Texture2D" uid="uid://ckiufvko433sd" path="res://in_game/ui/misfortune0.png" id="10_4xbse"]
@@ -17,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://duq6ku5me7q1w" path="res://in_game/ui/misfortune2.png" id="12_7q1dr"]
 [ext_resource type="Texture2D" uid="uid://2178c3js64ej" path="res://in_game/ui/misfortune3.png" id="13_yruyj"]
 [ext_resource type="Texture2D" uid="uid://dlr61xjvlwgnh" path="res://in_game/ui/misfortune4.png" id="14_g8fjn"]
-[ext_resource type="PackedScene" uid="uid://beke6qg4mq75v" path="res://in_game/agents/oni/oni.tscn" id="18_pjwh5"]
+[ext_resource type="PackedScene" uid="uid://dtfydnd7ojxtj" path="res://in_game/agents/dummy/dummy.tscn" id="15_oilck"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pyfeq"]
 texture = ExtResource("1_2qfij")
@@ -62,21 +59,12 @@ script = ExtResource("1_wg7vq")
 
 [node name="Agents" type="Node" parent="."]
 
-[node name="Oni" parent="Agents" instance=ExtResource("18_pjwh5")]
-position = Vector2(4, 2)
-
-[node name="Onibi" parent="Agents" instance=ExtResource("4_s5mb7")]
-position = Vector2(2, 2)
-
 [node name="Player" parent="Agents" instance=ExtResource("3_6c2bh")]
 unique_name_in_owner = true
 position = Vector2(4.5, 3.5)
 
-[node name="Fairy" parent="Agents" instance=ExtResource("6_m8fu3")]
-position = Vector2(6, 4.5)
-
-[node name="Beetle" parent="Agents" instance=ExtResource("7_iacex")]
-position = Vector2(6.5, 2)
+[node name="Dummy" parent="Agents" instance=ExtResource("15_oilck")]
+position = Vector2(2.5, 2)
 
 [node name="MainCamera" type="Camera2D" parent="."]
 unique_name_in_owner = true

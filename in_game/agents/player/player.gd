@@ -58,9 +58,8 @@ func _physics_process(_delta: float) -> void:
 	if input.shrink and misfortune > 0.125: misfortune -= 1
 	if input.expand: misfortune += 1
 	
-	if input.consume_spin():
-		if spin_timer == 0:
-			spin_animation.play()
+	if input.consume_spin() and spin_timer == 0:
+		spin_animation.play()
 		spin_timer = 22
 	elif spin_timer > 0:
 		spin_timer -= 1
@@ -105,7 +104,7 @@ func explode() -> void:
 	cast_explosion_animation.play()
 
 func damage(by: int) -> void:
-	if iframes == 0:
+	if iframes == 0 and by > 0:
 		health -= by
 		iframes = 20
 

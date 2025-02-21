@@ -8,6 +8,7 @@ extends Node
 @export var projectile: PackedScene = null
 @export var fire_delay: int = 120
 @export var misfortune_required: int = 0
+@export var knockback_speed: float = 0.08
 
 var iframes: int = 0
 var knockback: Vector2 = Vector2.ZERO
@@ -23,10 +24,11 @@ func hit(area: Area2D) -> void:
 			return
 		health -= 1
 		iframes = 20
-		knockback = (agent.global_position - area.global_position).normalized() * 0.08
+		knockback = (agent.global_position - area.global_position).normalized() * knockback_speed
 		player.grant_misfortune()
 	elif area.name == "ExplosionArea":
 		health -= 10
+		iframes = 20
 	elif area.get_parent().name == "Player":
 		area.get_node("%Behaviour").damage(damage)
 
