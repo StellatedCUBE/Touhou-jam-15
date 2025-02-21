@@ -17,12 +17,12 @@ func collides(area: Agent) -> bool:
 
 func _ready() -> void:
 	for cell: Vector2i in get_used_cells():
-		var miasma_cost: int = get_cell_tile_data(cell).get_custom_data("SpinBreakMiasmaRequirement")
-		if miasma_cost > 0:
+		var misfortune_cost: int = get_cell_tile_data(cell).get_custom_data("SpinBreakMisfortuneRequirement")
+		if misfortune_cost > 0:
 			var pos: Vector2 = to_global(map_to_local(cell))
 			var node: SpinBreakableTile = spin_breakable_tile.instantiate()
 			node.map = self
 			node.cell = cell
-			node.cutoff = miasma_cost
+			node.cutoff = misfortune_cost
 			get_parent().add_child.call_deferred(node)
 			node.global_position = pos

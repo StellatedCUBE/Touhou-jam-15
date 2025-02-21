@@ -1,4 +1,5 @@
 extends Node
+class_name Player
 
 @onready var agent: Agent = get_parent()
 @onready var input: InputManager = get_tree().root.get_node("World/%Input")
@@ -9,7 +10,8 @@ extends Node
 @export var speed: float = 0.0625
 @export var adjust: float = 0.25
 @export var scale_speed: float = 0.0625
-@export var miasma: int = 0
+@export var misfortune: int = 0
+@export var health: int = 10
 
 var spin_timer: int = 0
 
@@ -18,7 +20,7 @@ var facing: Vector2 = Vector2.DOWN
 func _physics_process(_delta: float) -> void:
 	var scale: float = agent.scale.x
 	var speed_mul: float = 1
-	var target_scale: float = miasma_to_scale(miasma)
+	var target_scale: float = misfortune_to_scale(misfortune)
 	
 	if target_scale < scale:
 		scale = max(target_scale, scale - scale_speed)
@@ -45,8 +47,8 @@ func _physics_process(_delta: float) -> void:
 		agent.move_y(speed * speed_mul, adjust * scale)
 		facing = Vector2.DOWN
 	
-	if input.shrink and miasma > 0.125: miasma -= 1
-	if input.expand: miasma += 1
+	if input.shrink and misfortune > 0.125: misfortune -= 1
+	if input.expand: misfortune += 1
 	
 	if input.consume_spin():
 		spin_timer = 22
@@ -60,9 +62,9 @@ func _physics_process(_delta: float) -> void:
 	sprite.visible = spin_timer == 0
 	
 
-func miasma_to_scale(miasma: float) -> float:
-	if miasma >= 20:
+func misfortune_to_scale(misfortune: float) -> float:
+	if misfortune >= 20:
 		return 3
-	if miasma >= 10:
+	if misfortune >= 10:
 		return 2
 	return 1
