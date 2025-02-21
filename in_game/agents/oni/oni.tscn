@@ -18,3 +18,4 @@ script = ExtResource("3_66j2b")
 health = 5
 damage = 3
 projectile = ExtResource("4_g0228")
+misfortune_required = 10
