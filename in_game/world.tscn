@@ -55,6 +55,7 @@ texture = ExtResource("1_2qfij")
 1:2/0/custom_data_2 = Vector2i(0, 2)
 1:2/0/custom_data_3 = true
 2:2/0 = 0
+2:2/0/custom_data_6 = "res://in_game/Level 2.tscn"
 3:2/0 = 0
 3:2/0/custom_data_0 = true
 3:2/0/custom_data_4 = 1
@@ -114,6 +115,7 @@ texture = ExtResource("1_2qfij")
 1:6/0/custom_data_2 = Vector2i(0, 6)
 1:6/0/custom_data_3 = true
 2:6/0 = 0
+2:6/0/custom_data_6 = "res://in_game/Level 3.tscn"
 3:6/0 = 0
 3:6/0/custom_data_0 = true
 3:6/0/custom_data_2 = Vector2i(0, 4)
@@ -212,6 +214,8 @@ custom_data_layer_4/name = "Explodable"
 custom_data_layer_4/type = 2
 custom_data_layer_5/name = "PushBlock"
 custom_data_layer_5/type = 2
+custom_data_layer_6/name = "Destination"
+custom_data_layer_6/type = 4
 sources/0 = SubResource("TileSetAtlasSource_pyfeq")
 
 [node name="World" type="Node2D"]

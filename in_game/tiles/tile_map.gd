@@ -13,6 +13,7 @@ var push_blocks: Array[PackedScene] = [
 	preload("res://in_game/agents/push_block/push_block_2.tscn"),
 	preload("res://in_game/agents/push_block/push_block_3.tscn")
 ]
+var door_tile: PackedScene = preload("res://in_game/tiles/door_tile.tscn")
 
 var solid_agents: Array[Agent] = []
 
@@ -77,7 +78,15 @@ func _ready() -> void:
 			set_cell(cell + Vector2i.DOWN, source, behind)
 			set_cell(cell + Vector2i.ONE, source, behind)
 			continue
-			
+		
+		var destination: String = get_cell_tile_data(cell).get_custom_data("Destination")
+		if destination != null and destination != "":
+			var pos: Vector2 = to_global(map_to_local(cell))
+			var node: DoorTile = door_tile.instantiate()
+			node.destination = destination
+			get_parent().add_child.call_deferred(node)
+			node.global_position = pos
+			continue
 
 func do_gate_check() -> void:
 	for agent: Agent in %Agents.get_children():
