@@ -25,7 +25,7 @@ var facing: int = 0
 var explosion: PackedScene = preload("res://in_game/agents/player/explosion/explosion.tscn")
 
 var step_anim_counter: int = 0
-
+var last_movement: int = 8
 var iframes: int = 0
 
 func _physics_process(_delta: float) -> void:
@@ -81,8 +81,11 @@ func _physics_process(_delta: float) -> void:
 	
 	sprite.visible = spin_timer == 0 and not cast_explosion_animation.is_playing() and iframes % 2 == 0
 	
-	var frame_y: int
 	if moving:
+		last_movement = 0
+	
+	var frame_y: int
+	if last_movement < 3:
 		frame_y = step_anim_counter / 12 % 2
 		step_anim_counter += 1
 		
@@ -97,6 +100,8 @@ func _physics_process(_delta: float) -> void:
 	else:
 		step_anim_counter = 0
 		frame_y = 2
+	
+	last_movement += 1
 	
 	(sprite.texture as AtlasTexture).region = Rect2(16 * facing, frame_y * 24 + 1, 16, 23)
 	

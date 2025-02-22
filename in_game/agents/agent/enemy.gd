@@ -61,13 +61,16 @@ func _physics_process(_delta: float) -> void:
 		knockback *= 0.92
 	else:
 		knockback = Vector2.ZERO
-		if projectile != null or agent.global_position.distance_squared_to(player.global_position) > sight_squared or bonk > 0:
+		var dsquared: float = agent.global_position.distance_squared_to(player.global_position)
+		if projectile != null or dsquared > sight_squared or bonk > 0:
 			var wander: Vector2 = Vector2(noise_x.get_noise_1d(noise_t), noise_y.get_noise_1d(noise_t)).normalized() * speed
 			noise_t += frequency
 			if not agent.move(wander):
 				reset_noise()
 			if bonk > 0:
 				bonk -= 1
+		elif dsquared < square((player.scale.x + 1) / 2):
+			knockback = (agent.global_position - player.global_position).normalized() * knockback_speed
 		else:
 			var direction: Vector2 = agent.global_position.direction_to(player.global_position) * speed
 			var could_x: bool = agent.move_x(direction.x, speed) and abs(direction.x) > speed / 8
@@ -101,3 +104,6 @@ func reset_noise():
 	noise_y.fractal_type = FastNoiseLite.FRACTAL_NONE
 	noise_x.seed = randi()
 	noise_y.seed = randi()
+
+func square(x: float) -> float:
+	return x * x

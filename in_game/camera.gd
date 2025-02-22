@@ -34,8 +34,12 @@ func transition_to(target: Vector2) -> void:
 
 func update_agent_modes() -> void:
 	var rect: Rect2 = Rect2(map_pos, Vector2(width, height))
-	for agent: Node2D in %Agents.get_children():
+	var solid: Array[Agent] = []
+	for agent: Agent in %Agents.get_children():
 		if rect.has_point(agent.global_position):
 			agent.process_mode = Node.PROCESS_MODE_PAUSABLE
+			if agent.solid:
+				solid.append(agent)
 		else:
 			agent.process_mode = Node.PROCESS_MODE_DISABLED
+	%TileMap.solid_agents = solid

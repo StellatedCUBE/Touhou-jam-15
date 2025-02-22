@@ -5,6 +5,7 @@ class_name Agent
 @onready var map: Map = get_tree().root.get_node("World/%TileMap")
 
 @export var required_for_gate: bool = true
+@export var solid: bool = false
 
 @export var texture: Texture2D:
 	set(value):
@@ -20,6 +21,8 @@ class_name Agent
 	set(value):
 		texture = texture
 
+var pushed: bool
+
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		#if get_parent() != null and get_parent().name == "World":
@@ -34,9 +37,13 @@ func _ready() -> void:
 		queue_free()
 
 func collides() -> bool:
-	return map.collides(self)
+	var ctype: int = map.collides(self)
+	if ctype == 2:
+		pushed = true
+	return ctype > 0
 
 func move(by: Vector2) -> bool:
+	pushed = false
 	position += by
 	if collides():
 		position -= by
@@ -46,6 +53,9 @@ func move(by: Vector2) -> bool:
 func move_x(by: float, adjust: float) -> bool:
 	if move(Vector2(by, 0)):
 		return true
+	
+	if pushed:
+		return false
 		
 	var s: float = scale.x / 2
 	var y: float = global_position.y + s
@@ -61,6 +71,9 @@ func move_x(by: float, adjust: float) -> bool:
 func move_y(by: float, adjust: float) -> bool:
 	if move(Vector2(0, by)):
 		return true
+	
+	if pushed:
+		return false
 		
 	var s: float = scale.x / 2
 	var x: float = global_position.x + s
