@@ -3,6 +3,7 @@ class_name Player
 
 @onready var agent: Agent = get_parent()
 @onready var input: InputManager = get_tree().root.get_node("World/%Input")
+@onready var camera: Camera = get_tree().root.get_node("World/%MainCamera")
 @onready var sprite: Sprite2D = %Sprite
 @onready var spin_animation: AnimatedSprite2D = %Spin
 @onready var spin_collider: CollisionShape2D = %SpinCircle
@@ -79,6 +80,15 @@ func _physics_process(_delta: float) -> void:
 	if moving:
 		frame_y = step_anim_counter / 12 % 2
 		step_anim_counter += 1
+		
+		if agent.global_position.x < camera.map_pos.x + 0.5:
+			camera.transition(Vector2.LEFT)
+		elif agent.global_position.y < camera.map_pos.y + 0.5:
+			camera.transition(Vector2.UP)
+		elif agent.global_position.x > camera.map_pos.x + camera.width - 0.5:
+			camera.transition(Vector2.RIGHT)
+		elif agent.global_position.y > camera.map_pos.y + camera.height - 0.5:
+			camera.transition(Vector2.DOWN)
 	else:
 		step_anim_counter = 0
 		frame_y = 2
