@@ -5,9 +5,13 @@ class_name Player
 @onready var input: InputManager = get_tree().root.get_node("World/%Input")
 @onready var camera: Camera = get_tree().root.get_node("World/%MainCamera")
 @onready var sprite: Sprite2D = %Sprite
+@onready var damage_sfx: AudioStreamPlayer = %DamageSFX
+@onready var expand_sfx: AudioStreamPlayer = %ExpandSFX
 @onready var spin_animation: AnimatedSprite2D = %Spin
 @onready var spin_collider: CollisionShape2D = %SpinCircle
+@onready var spin_sfx: AudioStreamPlayer = %SpinSFX
 @onready var cast_explosion_animation: AnimatedSprite2D = %CastExplosion
+@onready var explosion_sfx: AudioStreamPlayer = %ExplosionSFX
 
 @export var speed: float = 0.0625
 @export var adjust: float = 0.25
@@ -61,6 +65,7 @@ func _physics_process(_delta: float) -> void:
 	
 	if input.consume_spin() and spin_timer == 0:
 		spin_animation.play()
+		spin_sfx.play()
 		spin_timer = 22
 	elif spin_timer > 0:
 		spin_timer -= 1
@@ -111,12 +116,16 @@ func explode() -> void:
 	instance.global_position = agent.global_position
 	misfortune -= explosion_cost
 	cast_explosion_animation.play()
+	explosion_sfx.play()
 
 func damage(by: int) -> void:
 	if iframes == 0 and by > 0:
 		health -= by
 		iframes = 20
+		damage_sfx.play()
 
 func grant_misfortune() -> void:
 	if misfortune < 20:
+		if misfortune_to_scale(misfortune) != misfortune_to_scale(misfortune + 1):
+			expand_sfx.play()
 		misfortune += 1
