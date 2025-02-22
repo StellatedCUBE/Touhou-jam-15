@@ -2,6 +2,11 @@ extends TileMapLayer
 class_name Map
 
 var spin_breakable_tile: PackedScene = preload("res://in_game/tiles/spin_breakable_tile.tscn")
+var explodable_tiles: Array[PackedScene] = [
+	null,
+	preload("res://in_game/tiles/explodable_tile_small.tscn"),
+	preload("res://in_game/tiles/explodable_tile_large.tscn")
+]
 
 func collides(area: Agent) -> bool:
 	var s: float = area.scale.x / 2 - 0.015625
@@ -24,6 +29,15 @@ func _ready() -> void:
 			node.map = self
 			node.cell = cell
 			node.cutoff = misfortune_cost
+			get_parent().add_child.call_deferred(node)
+			node.global_position = pos
+			
+		var explodable: int = get_cell_tile_data(cell).get_custom_data("Explodable")
+		if explodable > 0:
+			var pos: Vector2 = to_global(map_to_local(cell))
+			var node: ExplodableTile = explodable_tiles[explodable].instantiate()
+			node.map = self
+			node.cell = cell
 			get_parent().add_child.call_deferred(node)
 			node.global_position = pos
 

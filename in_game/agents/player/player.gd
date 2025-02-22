@@ -107,8 +107,7 @@ func misfortune_to_scale(misfortune: float) -> float:
 
 func explode() -> void:
 	var instance: Node2D = explosion.instantiate()
-	agent.get_parent().add_child(instance)
-	agent.get_parent().move_child(instance, 0)
+	agent.map.add_sibling(instance)
 	instance.global_position = agent.global_position
 	misfortune -= explosion_cost
 	cast_explosion_animation.play()

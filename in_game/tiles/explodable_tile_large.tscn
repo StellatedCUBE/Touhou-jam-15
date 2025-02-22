@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d20wkqcr4qebx"]
+
+[ext_resource type="Script" path="res://in_game/tiles/explodable_tile.gd" id="1_i3j2g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2p642"]
+size = Vector2(2, 2)
+
+[node name="ExplodableTile" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_i3j2g")
+size = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_2p642")
