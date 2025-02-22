@@ -26,3 +26,15 @@ func _ready() -> void:
 			node.cutoff = misfortune_cost
 			get_parent().add_child.call_deferred(node)
 			node.global_position = pos
+
+func do_gate_check() -> void:
+	for agent: Agent in %Agents.get_children():
+		if agent.process_mode == Node.PROCESS_MODE_PAUSABLE and agent.required_for_gate:
+			return
+	
+	var camera: Camera = %MainCamera
+	for x: int in range(floori(camera.map_pos.x), floori(camera.map_pos.x + camera.width)):
+		for y: int in range(floori(camera.map_pos.y), floori(camera.map_pos.y + camera.height)):
+			var cell: Vector2i = Vector2i(x, y)
+			if get_cell_tile_data(cell).get_custom_data("Gate"):
+				set_cell(cell, get_cell_source_id(cell), get_cell_tile_data(cell).get_custom_data("DestroysInto"))

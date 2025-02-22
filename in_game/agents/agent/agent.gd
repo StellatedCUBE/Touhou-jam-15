@@ -4,6 +4,8 @@ class_name Agent
 
 @onready var map: Map = get_tree().root.get_node("World/%TileMap")
 
+@export var required_for_gate: bool = true
+
 @export var texture: Texture2D:
 	set(value):
 		if $Sprite != null and value != null:
@@ -119,3 +121,8 @@ func size(to: float) -> bool:
 
 func change_size(by: float) -> bool:
 	return size(scale.x + by)
+
+func _exit_tree() -> void:
+	if not Engine.is_editor_hint() and required_for_gate:
+		required_for_gate = false
+		map.do_gate_check()
