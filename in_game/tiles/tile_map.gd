@@ -21,6 +21,7 @@ func collides(area: Agent) -> bool:
 	return false
 
 func _ready() -> void:
+	RenderingServer.set_default_clear_color(Color.BLACK)
 	for cell: Vector2i in get_used_cells():
 		var misfortune_cost: int = get_cell_tile_data(cell).get_custom_data("SpinBreakMisfortuneRequirement")
 		if misfortune_cost > 0:

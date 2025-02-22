@@ -42,6 +42,7 @@ func hit(area: Area2D) -> void:
 		iframes = 20
 	elif area.get_parent().name == "Player":
 		area.get_node("%Behaviour").damage(damage)
+		knockback = (agent.global_position - area.global_position).normalized() * (knockback_speed / 2)
 
 func _physics_process(_delta: float) -> void:
 	if iframes > 0:
