@@ -6,7 +6,9 @@ extends Sprite2D
 @export var state: int = 0
 
 func transition(to: int) -> void:
-	state = to
+	if state != to:
+		state = to
+		UISFX.play()
 	texture = states[to]
 
 func _ready() -> void:
@@ -32,6 +34,7 @@ func _process(_delta: float) -> void:
 		if destinations[state] == null or destinations[state] == "":
 			get_tree().quit()
 		else:
+			UISFX.play()
 			get_tree().change_scene_to_file(destinations[state])
 
 func transform() -> void:

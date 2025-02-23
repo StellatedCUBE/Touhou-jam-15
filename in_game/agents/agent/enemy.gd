@@ -62,7 +62,7 @@ func _physics_process(_delta: float) -> void:
 	else:
 		knockback = Vector2.ZERO
 		var dsquared: float = agent.global_position.distance_squared_to(player.global_position)
-		if projectile != null or dsquared > sight_squared or bonk > 0:
+		if projectile != null or dsquared > sight_squared or bonk > 0 or player.get_node("%Behaviour").health <= 0:
 			var wander: Vector2 = Vector2(noise_x.get_noise_1d(noise_t), noise_y.get_noise_1d(noise_t)).normalized() * speed
 			noise_t += frequency
 			if not agent.move(wander):
