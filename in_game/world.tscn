@@ -395,6 +395,7 @@ script = ExtResource("16_xq2ff")
 [node name="UI" type="Node2D" parent="."]
 process_mode = 3
 process_priority = -1
+z_index = 5
 script = ExtResource("8_lu4v2")
 
 [node name="Health" type="Node2D" parent="UI"]
