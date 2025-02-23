@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cve1wciliwsfw"]
+[gd_scene load_steps=24 format=4 uid="uid://cve1wciliwsfw"]
 
 [ext_resource type="Texture2D" uid="uid://dq20gyx55vaad" path="res://in_game/tiles/tiles.png" id="1_2qfij"]
 [ext_resource type="Script" path="res://in_game/input.gd" id="1_mnskf"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://dlr61xjvlwgnh" path="res://in_game/ui/misfortune4.png" id="14_g8fjn"]
 [ext_resource type="Texture2D" uid="uid://bme2cq6v1p0bd" path="res://camera_size.png" id="15_ocuo6"]
 [ext_resource type="Script" path="res://nonexistent.gd" id="16_xq2ff"]
+[ext_resource type="Script" path="res://in_game/fade.gd" id="19_1dade"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pyfeq"]
 texture = ExtResource("1_2qfij")
@@ -58,7 +59,7 @@ texture = ExtResource("1_2qfij")
 1:2/0/custom_data_2 = Vector2i(0, 2)
 1:2/0/custom_data_3 = true
 2:2/0 = 0
-2:2/0/custom_data_6 = "res://in_game/Level 2.tscn"
+2:2/0/custom_data_6 = "res://pre_game/pre_level_2.tscn"
 3:2/0 = 0
 3:2/0/custom_data_0 = true
 3:2/0/custom_data_4 = 1
@@ -128,7 +129,7 @@ texture = ExtResource("1_2qfij")
 1:6/0/custom_data_2 = Vector2i(0, 6)
 1:6/0/custom_data_3 = true
 2:6/0 = 0
-2:6/0/custom_data_6 = "res://in_game/Level 3.tscn"
+2:6/0/custom_data_6 = "res://pre_game/pre_level_3.tscn"
 3:6/0 = 0
 3:6/0/custom_data_0 = true
 3:6/0/custom_data_2 = Vector2i(0, 4)
@@ -192,6 +193,7 @@ texture = ExtResource("1_2qfij")
 1:10/0/custom_data_2 = Vector2i(0, 10)
 1:10/0/custom_data_3 = true
 2:10/0 = 0
+2:10/0/custom_data_6 = "res://post_game/ending.tscn"
 3:10/0 = 0
 3:10/0/custom_data_0 = true
 3:10/0/custom_data_2 = Vector2i(0, 8)
@@ -412,3 +414,11 @@ script = ExtResource("6_ru34o")
 icons = Array[Texture2D]([ExtResource("10_4xbse"), ExtResource("11_1th2a"), ExtResource("12_7q1dr"), ExtResource("13_yruyj"), ExtResource("14_g8fjn")])
 max = 20
 hp = false
+
+[node name="Fade" type="Polygon2D" parent="UI"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-1, -1, 17, -1, 17, 10, -1, 10)
+script = ExtResource("19_1dade")

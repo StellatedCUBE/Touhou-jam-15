@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://beelhtp7thngo"]
+
+[ext_resource type="Texture2D" uid="uid://dfof0y6i0euns" path="res://pre_game/level_1_intro.png" id="1_ih8ac"]
+[ext_resource type="Script" path="res://pre_game/splash.gd" id="2_7gl4r"]
+[ext_resource type="Script" path="res://in_game/input.gd" id="3_ikgcq"]
+
+[node name="Splash" type="Sprite2D"]
+texture = ExtResource("1_ih8ac")
+script = ExtResource("2_7gl4r")
+into = "res://in_game/Level 1.tscn"
+
+[node name="Input" type="Node" parent="."]
+script = ExtResource("3_ikgcq")

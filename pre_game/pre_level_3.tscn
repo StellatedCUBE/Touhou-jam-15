@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c0kpeh5hxiol2"]
+
+[ext_resource type="PackedScene" uid="uid://beelhtp7thngo" path="res://pre_game/pre_level_1.tscn" id="1_t4wli"]
+[ext_resource type="Texture2D" uid="uid://gmvtq1vesakf" path="res://pre_game/level_3_intro.png" id="2_0tbwe"]
+
+[node name="Splash" instance=ExtResource("1_t4wli")]
+texture = ExtResource("2_0tbwe")
+into = "res://in_game/Level 3.tscn"

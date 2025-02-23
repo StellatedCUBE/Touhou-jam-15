@@ -10,7 +10,8 @@ func _ready() -> void:
 func hit(area: Area2D) -> void:
 	if area.name == "Area" and area.get_parent().name == "Player":
 		get_tree().root.get_node("World/%Input").process_mode = Node.PROCESS_MODE_DISABLED
-		timer = 16
+		timer = 32
+		get_tree().root.get_node("World/%Fade").out()
 
 func _physics_process(_delta: float) -> void:
 	if timer > 0:
