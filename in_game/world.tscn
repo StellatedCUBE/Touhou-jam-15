@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://in_game/input.gd" id="1_mnskf"]
 [ext_resource type="Script" path="res://in_game/tiles/tile_map.gd" id="1_wg7vq"]
 [ext_resource type="PackedScene" uid="uid://c6vwsua87in1e" path="res://in_game/agents/player/player.tscn" id="3_6c2bh"]
-[ext_resource type="Texture2D" uid="uid://bxw6so77cjqxy" path="res://in_game/tiles/overhead.png" id="4_h7uer"]
+[ext_resource type="Texture2D" uid="uid://cfpqvnrgowmft" path="res://in_game/tiles/overhead.png" id="4_h7uer"]
 [ext_resource type="Script" path="res://in_game/camera.gd" id="4_mlnax"]
 [ext_resource type="Script" path="res://in_game/ui/icon_bar.gd" id="6_ru34o"]
 [ext_resource type="Texture2D" uid="uid://byr062vj8ovw0" path="res://in_game/ui/hp0.png" id="7_3x8ri"]
@@ -372,6 +372,7 @@ script = ExtResource("1_wg7vq")
 
 [node name="Overhead" type="TileMapLayer" parent="TileMap"]
 visible = false
+z_index = 2
 tile_set = SubResource("TileSet_l65il")
 
 [node name="Agents" type="Node" parent="."]

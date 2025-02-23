@@ -32,6 +32,7 @@ scale = Vector2(2, 2)
 [node name="Animation" parent="." index="2"]
 scale = Vector2(0.03125, 0.03125)
 sprite_frames = SubResource("SpriteFrames_utvvn")
+frame = 0
 frame_progress = 0.200085
 
 [node name="Behaviour" parent="." index="3"]
