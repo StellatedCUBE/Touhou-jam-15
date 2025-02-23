@@ -173,6 +173,7 @@ texture = ExtResource("1_2qfij")
 8:8/0/custom_data_0 = true
 0:9/0 = 0
 1:9/0 = 0
+1:9/0/custom_data_0 = true
 2:9/0 = 0
 2:9/0/custom_data_0 = true
 2:9/0/custom_data_2 = Vector2i(0, 8)
