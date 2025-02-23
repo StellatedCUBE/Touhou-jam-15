@@ -19,9 +19,9 @@ func _physics_process(_delta: float) -> void:
 		$Input.consume_spin()
 	elif fade_out > 0:
 		modulate.a = 1 - (fade_out as float / 8)
-		fade_out += 1
 		if fade_out > 8:
 			get_tree().change_scene_to_file(into)
+		fade_out += 1
 	elif $Input.consume_spin():
 		fade_out = 1
 

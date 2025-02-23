@@ -15,22 +15,27 @@ var shrink: bool = false
 var expand: bool = false
 
 func _process(_delta: float) -> void:
-	var kleft: bool = Input.is_key_pressed(KEY_LEFT)
-	var kright: bool = Input.is_key_pressed(KEY_RIGHT)
-	var kup: bool = Input.is_key_pressed(KEY_UP)
-	var kdown: bool = Input.is_key_pressed(KEY_DOWN)
+	var stick: Vector2 = (Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down") * 256).round()
+	
+	var x_dominant: bool = abs(stick.x) > abs(stick.y)
+	var y_dominant: bool = abs(stick.y) > abs(stick.x)
+	
+	var kleft: bool = x_dominant and stick.x < 0
+	var kright: bool = x_dominant and stick.x > 0
+	var kup: bool = y_dominant and stick.y < 0
+	var kdown: bool = y_dominant and stick.y > 0
 	left = kleft and not (kright or kup or kdown)
 	right = kright and not (kleft or kup or kdown)
 	up = kup and not (kleft or kright or kdown)
 	down = kdown and not (kleft or kright or kup)
 
 	var lkspin: bool = kspin
-	kspin = Input.is_key_pressed(KEY_Z)
+	kspin = Input.is_action_pressed("spin")
 	if kspin and not lkspin:
 		spin = true
 	
 	var lkexplode: bool = kexplode
-	kexplode = Input.is_key_pressed(KEY_X)
+	kexplode = Input.is_action_pressed("explode")
 	if kexplode and not lkexplode:
 		explode = true
 

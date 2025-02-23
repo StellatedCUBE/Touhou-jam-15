@@ -40,7 +40,6 @@ func collides(area: Agent) -> int:
 	return 0
 
 func _ready() -> void:
-	RenderingServer.set_default_clear_color(Color.BLACK)
 	var agents: Node = %Agents
 	var overhead: TileMapLayer = $Overhead
 	for cell: Vector2i in get_used_cells():

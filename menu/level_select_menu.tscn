@@ -1,0 +1,13 @@
+[gd_scene load_steps=6 format=3 uid="uid://ben52kwoe4eak"]
+
+[ext_resource type="Script" path="res://menu/menu.gd" id="1_400k2"]
+[ext_resource type="Texture2D" uid="uid://bsjny35225ljt" path="res://menu/states_level_select/0.png" id="2_fs17w"]
+[ext_resource type="Texture2D" uid="uid://b3p1ag0ouwpu1" path="res://menu/states_level_select/1.png" id="3_7ut1j"]
+[ext_resource type="Texture2D" uid="uid://b2033bj4gur7q" path="res://menu/states_level_select/2.png" id="4_3f4p4"]
+[ext_resource type="Texture2D" uid="uid://cocsx42m35uym" path="res://menu/states_level_select/3.png" id="5_772oc"]
+
+[node name="LevelSelectMenu" type="Sprite2D"]
+script = ExtResource("1_400k2")
+states = Array[Texture]([ExtResource("2_fs17w"), ExtResource("3_7ut1j"), ExtResource("4_3f4p4"), ExtResource("5_772oc")])
+transitions = Array[Vector4i]([Vector4i(-1, 3, -1, 1), Vector4i(-1, 3, 0, 2), Vector4i(-1, 3, 1, -1), Vector4i(0, -1, -1, -1)])
+destinations = Array[String](["res://pre_game/pre_level_1.tscn", "res://pre_game/pre_level_2.tscn", "res://pre_game/pre_level_3.tscn", "res://menu/main_menu.tscn"])
