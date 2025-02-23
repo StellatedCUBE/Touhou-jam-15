@@ -10,17 +10,5 @@ tile_map_data = PackedByteArray("AAABAAEAAAABAAEAAAACAAEAAAABAAEAAAADAAEAAAABAAE
 [node name="Player" parent="Agents" index="0"]
 position = Vector2(8, 7)
 
-[node name="Fairy" parent="Agents" index="1"]
-position = Vector2(21, 6)
-
-[node name="Onibi" parent="Agents" index="2"]
-position = Vector2(22, 7)
-
-[node name="Oni" parent="Agents" index="3"]
-position = Vector2(19, 5)
-
-[node name="Beetle" parent="Agents" index="4"]
-position = Vector2(19, 7)
-
 [node name="RoomBoundaries" parent="." index="4"]
 position = Vector2(750, 360)

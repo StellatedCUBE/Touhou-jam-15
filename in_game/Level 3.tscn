@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=4 uid="uid://bqx817t6msmud"]
+[gd_scene load_steps=3 format=4 uid="uid://bqx817t6msmud"]
 
 [ext_resource type="PackedScene" uid="uid://cve1wciliwsfw" path="res://in_game/world.tscn" id="1_ivkjs"]
+[ext_resource type="AudioStream" uid="uid://cwqiqxg3v7snl" path="res://in_game/music/l3.mp3" id="2_hvn5w"]
 
 [node name="World" instance=ExtResource("1_ivkjs")]
 
@@ -9,3 +10,9 @@ tile_map_data = PackedByteArray("AAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAA
 
 [node name="RoomBoundaries" parent="." index="4"]
 position = Vector2(750, 392)
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="6"]
+process_mode = 3
+stream = ExtResource("2_hvn5w")
+volume_db = -3.0
+autoplay = true
