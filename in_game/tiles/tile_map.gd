@@ -24,7 +24,7 @@ func collides(area: Agent) -> int:
 	
 	for i: int in range(min.x, max.x + 1):
 		for j: int in range(min.y, max.y + 1):
-			if get_cell_tile_data(Vector2i(i, j)).get_custom_data("Solid"):
+			if get_cell_tile_data(Vector2i(i, j)).get_custom_data("Solid") and not (area.small and get_cell_tile_data(Vector2i(i, j)).get_custom_data("AllowSmall")):
 				return 1
 	
 	var rect: Rect2 = Rect2(area.global_position - Vector2(s, s), Vector2.ONE * (s * 2))

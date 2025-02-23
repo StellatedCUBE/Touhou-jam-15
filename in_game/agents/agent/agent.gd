@@ -6,6 +6,7 @@ class_name Agent
 
 @export var required_for_gate: bool = true
 @export var solid: bool = false
+@export var small: bool = false
 
 @export var texture: Texture2D:
 	set(value):

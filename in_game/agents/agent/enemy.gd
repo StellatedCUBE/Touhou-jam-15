@@ -93,7 +93,8 @@ func _physics_process(_delta: float) -> void:
 				var p_instance: Projectile = instance.get_node("%Behaviour")
 				p_instance.velocity = agent.global_position.direction_to(player.global_position) * p_instance.speed
 				break
-			if agent.map.get_cell_tile_data(agent.map.local_to_map(agent.map.to_local(sample_pos))).get_custom_data("Solid"):
+			var data: TileData = agent.map.get_cell_tile_data(agent.map.local_to_map(agent.map.to_local(sample_pos)))
+			if data.get_custom_data("Solid") and not data.get_custom_data("AllowSmall"):
 				break
 
 func reset_noise():
