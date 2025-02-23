@@ -144,6 +144,18 @@ position = Vector2(44.5, 12.5)
 [node name="Fairy10" parent="Agents" index="44" instance=ExtResource("3_01er3")]
 position = Vector2(32.5, 14.5)
 
+[node name="Beetle22" parent="Agents" index="45" instance=ExtResource("2_s7pkh")]
+position = Vector2(82.5, -3.5)
+
+[node name="Onibi13" parent="Agents" index="46" instance=ExtResource("5_8ohld")]
+position = Vector2(86.5, -1.5)
+
+[node name="Fairy11" parent="Agents" index="47" instance=ExtResource("3_01er3")]
+position = Vector2(86.5, -5.5)
+
+[node name="Beetle23" parent="Agents" index="48" instance=ExtResource("2_s7pkh")]
+position = Vector2(117.5, 12.5)
+
 [node name="RoomBoundaries" parent="." index="4"]
 visible = false
 position = Vector2(750, 376)
