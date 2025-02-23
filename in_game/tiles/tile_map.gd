@@ -42,7 +42,17 @@ func collides(area: Agent) -> int:
 func _ready() -> void:
 	RenderingServer.set_default_clear_color(Color.BLACK)
 	var agents: Node = %Agents
+	var overhead: TileMapLayer = $Overhead
 	for cell: Vector2i in get_used_cells():
+		if get_cell_tile_data(cell).get_custom_data("Overhead"):
+			var ac: Vector2i = get_cell_atlas_coords(cell)
+			overhead.set_cell(cell, 0, ac)
+			var into: Vector2i = get_cell_tile_data(cell).get_custom_data("DestroysInto")
+			if into == Vector2i.ZERO:
+				into = Vector2i(0, ac.y & ~3)
+			set_cell(cell, get_cell_source_id(cell), into)
+			continue
+			
 		var misfortune_cost: int = get_cell_tile_data(cell).get_custom_data("SpinBreakMisfortuneRequirement")
 		if misfortune_cost > 0:
 			var pos: Vector2 = to_global(map_to_local(cell))
@@ -87,6 +97,8 @@ func _ready() -> void:
 			get_parent().add_child.call_deferred(node)
 			node.global_position = pos
 			continue
+	
+	overhead.visible = true
 
 func do_gate_check() -> void:
 	for agent: Agent in %Agents.get_children():
