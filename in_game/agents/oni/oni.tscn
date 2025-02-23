@@ -1,20 +1,40 @@
-[gd_scene load_steps=5 format=3 uid="uid://beke6qg4mq75v"]
+[gd_scene load_steps=7 format=3 uid="uid://duhqt1yyxmymi"]
 
-[ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_lv0g7"]
+[ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="1_dedsp"]
 [ext_resource type="Texture2D" uid="uid://c2uy14w3gc04w" path="res://in_game/agents/oni/oni.png" id="2_dyh7t"]
-[ext_resource type="Script" path="res://in_game/agents/agent/enemy.gd" id="3_66j2b"]
 [ext_resource type="PackedScene" uid="uid://b2hej8yiejl5c" path="res://in_game/agents/oni/projectile.tscn" id="4_g0228"]
 
-[node name="Oni" instance=ExtResource("1_lv0g7")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t5rf"]
+atlas = ExtResource("2_dyh7t")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn821"]
+atlas = ExtResource("2_dyh7t")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utvvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t5rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn821")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Oni" instance=ExtResource("1_dedsp")]
 scale = Vector2(2, 2)
-texture = ExtResource("2_dyh7t")
 
-[node name="Sprite" parent="." index="1"]
+[node name="Animation" parent="." index="2"]
 scale = Vector2(0.03125, 0.03125)
-texture = ExtResource("2_dyh7t")
+sprite_frames = SubResource("SpriteFrames_utvvn")
+frame_progress = 0.200085
 
-[node name="Behaviour" type="Node" parent="." index="2"]
-script = ExtResource("3_66j2b")
+[node name="Behaviour" parent="." index="3"]
 health = 5
 damage = 3
 projectile = ExtResource("4_g0228")
