@@ -14,8 +14,8 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var vps: Vector2 = get_viewport().size
-	zoom = Vector2.ONE * (vps.x / width)
-	position = Vector2(width / 2, width * vps.y / vps.x / 2) + map_pos
+	zoom = Vector2.ONE * min(vps.x / width, vps.y / height)
+	position = Vector2(width / 2, height / 2) + map_pos
 	
 	if transitioning:
 		map_pos = map_pos.move_toward(transition_target, transition_speed * delta * 60)
