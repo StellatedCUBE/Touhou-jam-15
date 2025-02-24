@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dqhvjqiqigwa"]
+[gd_scene load_steps=5 format=3 uid="uid://dqhvjqiqigwa"]
 
 [ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_cpe0f"]
 [ext_resource type="Texture2D" uid="uid://34cmmwrtnlpi" path="res://in_game/agents/fairy/projectile.png" id="1_r3eep"]
 [ext_resource type="Script" path="res://in_game/agents/agent/projectile.gd" id="3_besff"]
+[ext_resource type="AudioStream" uid="uid://cvkiqshma3qe2" path="res://in_game/agents/fairy/fire.wav" id="4_pw4cv"]
 
 [node name="Agent" instance=ExtResource("1_cpe0f")]
 scale = Vector2(0.25, 0.25)
@@ -17,3 +18,7 @@ texture = ExtResource("1_r3eep")
 [node name="Behaviour" type="Node" parent="." index="2"]
 unique_name_in_owner = true
 script = ExtResource("3_besff")
+
+[node name="FireSFX" type="AudioStreamPlayer" parent="." index="3"]
+stream = ExtResource("4_pw4cv")
+autoplay = true

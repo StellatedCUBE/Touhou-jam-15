@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 UISFX="*res://menu/uisfx.gd"
+TileBreakSfx="*res://in_game/tiles/tile_break_sfx.gd"
 
 [input]
 

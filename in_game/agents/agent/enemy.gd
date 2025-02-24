@@ -28,18 +28,26 @@ func _ready() -> void:
 	reset_noise()
 	%Area.connect("area_entered", hit)
 
+func take_damage(amount: int) -> void:
+	health -= amount
+	iframes = 20
+	var sfx_player: AudioStreamPlayer = AudioStreamPlayer.new()
+	sfx_player.stream = preload("res://in_game/agents/agent/enemy_hit.wav")
+	agent.get_parent().get_parent().add_child(sfx_player)
+	sfx_player.process_mode = Node.PROCESS_MODE_ALWAYS
+	sfx_player.connect("finished", sfx_player.queue_free)
+	sfx_player.play()
+
 func hit(area: Area2D) -> void:
 	if area.name == "SpinArea" and iframes == 0:
 		var player: Player = area.get_node("%Behaviour")
 		if player.misfortune < misfortune_required:
 			return
-		health -= 1
-		iframes = 20
+		take_damage(1)
 		knockback = (agent.global_position - area.global_position).normalized() * knockback_speed
 		player.grant_misfortune()
 	elif area.name == "ExplosionArea":
-		health -= 10
-		iframes = 20
+		take_damage(10)
 	elif area.get_parent().name == "Player":
 		area.get_node("%Behaviour").damage(damage)
 		knockback = (agent.global_position - area.global_position).normalized() * (knockback_speed / 2)

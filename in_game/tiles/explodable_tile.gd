@@ -17,4 +17,5 @@ func hit(area: Area2D) -> void:
 			for y: int in range(size):
 				map.set_cell(cell + Vector2i(x, y), source_id, tile)
 		map = null
+		TileBreakSfx.scheduled = true
 		queue_free()

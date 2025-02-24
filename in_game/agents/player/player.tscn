@@ -140,6 +140,7 @@ disabled = true
 [node name="SpinSFX" type="AudioStreamPlayer" parent="." index="7"]
 unique_name_in_owner = true
 stream = ExtResource("5_todgo")
+volume_db = -5.0
 
 [node name="CastExplosion" type="AnimatedSprite2D" parent="." index="8"]
 unique_name_in_owner = true
