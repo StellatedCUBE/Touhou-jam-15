@@ -7,6 +7,7 @@ class_name Agent
 @export var required_for_gate: bool = true
 @export var solid: bool = false
 @export var small: bool = false
+@export var poof: PackedScene = preload("res://in_game/poof.tscn")
 
 @export var texture: Texture2D:
 	set(value):
@@ -137,6 +138,11 @@ func change_size(by: float) -> bool:
 	return size(scale.x + by)
 
 func _exit_tree() -> void:
-	if not Engine.is_editor_hint() and required_for_gate:
-		required_for_gate = false
-		map.do_gate_check()
+	if not Engine.is_editor_hint():
+		if required_for_gate:
+			required_for_gate = false
+			map.do_gate_check()
+		if poof != null:
+			var poof_instance: Poof = poof.instantiate()
+			get_parent().get_parent().add_child(poof_instance)
+			poof_instance.run($Area/Rect)

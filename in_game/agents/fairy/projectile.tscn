@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dqhvjqiqigwa"]
+[gd_scene load_steps=6 format=3 uid="uid://dqhvjqiqigwa"]
 
 [ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_cpe0f"]
 [ext_resource type="Texture2D" uid="uid://34cmmwrtnlpi" path="res://in_game/agents/fairy/projectile.png" id="1_r3eep"]
+[ext_resource type="PackedScene" uid="uid://dnp58u28niuxv" path="res://in_game/agents/fairy/projectile_poof.tscn" id="2_y8wox"]
 [ext_resource type="Script" path="res://in_game/agents/agent/projectile.gd" id="3_besff"]
 [ext_resource type="AudioStream" uid="uid://cvkiqshma3qe2" path="res://in_game/agents/fairy/fire.wav" id="4_pw4cv"]
 
@@ -9,6 +10,7 @@
 scale = Vector2(0.25, 0.25)
 required_for_gate = false
 small = true
+poof = ExtResource("2_y8wox")
 texture = ExtResource("1_r3eep")
 
 [node name="Sprite" parent="." index="1"]

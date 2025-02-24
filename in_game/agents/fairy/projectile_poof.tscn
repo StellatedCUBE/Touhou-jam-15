@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnp58u28niuxv"]
+
+[ext_resource type="PackedScene" uid="uid://d03xckef3n3a0" path="res://in_game/poof.tscn" id="1_8dg4w"]
+[ext_resource type="Texture2D" uid="uid://cc1147e6yre7c" path="res://in_game/agents/fairy/projectile_poof.png" id="2_nirbh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cun72"]
+atlas = ExtResource("2_nirbh")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8au1i"]
+atlas = ExtResource("2_nirbh")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0j6v8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cun72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8au1i")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Poof" instance=ExtResource("1_8dg4w")]
+sprite_frames = SubResource("SpriteFrames_0j6v8")

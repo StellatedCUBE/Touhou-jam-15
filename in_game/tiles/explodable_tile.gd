@@ -18,4 +18,7 @@ func hit(area: Area2D) -> void:
 				map.set_cell(cell + Vector2i(x, y), source_id, tile)
 		map = null
 		TileBreakSfx.scheduled = true
+		var poof: Poof = preload("res://in_game/poof.tscn").instantiate()
+		get_parent().add_child(poof)
+		poof.run($CollisionShape2D)
 		queue_free()
