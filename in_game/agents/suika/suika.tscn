@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://p7t4c2jpeg8v"]
+
+[ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="1_ummcf"]
+[ext_resource type="Texture2D" uid="uid://dh0dfafnqnn5l" path="res://in_game/agents/suika/Suika.png" id="2_rmwtc"]
+[ext_resource type="PackedScene" uid="uid://b2hej8yiejl5c" path="res://in_game/agents/oni/projectile.tscn" id="3_nklmg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pd4c"]
+atlas = ExtResource("2_rmwtc")
+region = Rect2(0, 25, 32, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxpbd"]
+atlas = ExtResource("2_rmwtc")
+region = Rect2(32, 25, 32, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utvvn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pd4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxpbd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Oni" instance=ExtResource("1_ummcf")]
+scale = Vector2(2, 2)
+
+[node name="Animation" parent="." index="2"]
+scale = Vector2(0.03125, 0.03125)
+sprite_frames = SubResource("SpriteFrames_utvvn")
+frame_progress = 0.483278
+
+[node name="Behaviour" parent="." index="3"]
+health = 5
+damage = 3
+projectile = ExtResource("3_nklmg")
+misfortune_required = 10

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://d00dvjg80fin6"]
+
+[ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="1_mlfrj"]
+[ext_resource type="Texture2D" uid="uid://m8bbw0skpg75" path="res://in_game/agents/sukuna/sukuna.png" id="2_u2ugv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ii2be"]
+atlas = ExtResource("2_u2ugv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvmvh"]
+atlas = ExtResource("2_u2ugv")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ry1op"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ii2be")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvmvh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Beetle" instance=ExtResource("1_mlfrj")]
+
+[node name="Animation" parent="." index="2"]
+sprite_frames = SubResource("SpriteFrames_ry1op")
+frame_progress = 0.241486
+
+[node name="Behaviour" parent="." index="3"]
+health = 3
+damage = 2
+speed = 0.06125
+frequency = 2.0
+sight = 7.0

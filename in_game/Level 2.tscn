@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://chsrpy3kqkho8"]
+[gd_scene load_steps=8 format=4 uid="uid://chsrpy3kqkho8"]
 
 [ext_resource type="PackedScene" uid="uid://cve1wciliwsfw" path="res://in_game/world.tscn" id="1_fj2uq"]
 [ext_resource type="PackedScene" uid="uid://bgqq0x58qodkc" path="res://in_game/agents/beetle/beetle.tscn" id="2_s7pkh"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b62jqmc8l58qp" path="res://in_game/agents/fairy/fairy.tscn" id="3_01er3"]
 [ext_resource type="PackedScene" uid="uid://dtfydnd7ojxtj" path="res://in_game/agents/dummy/dummy.tscn" id="4_3q41h"]
 [ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="5_8ohld"]
+[ext_resource type="PackedScene" uid="uid://d00dvjg80fin6" path="res://in_game/agents/sukuna/sukuna.tscn" id="7_ilse1"]
 
 [node name="World" instance=ExtResource("1_fj2uq")]
 
@@ -153,8 +154,8 @@ position = Vector2(86.5, -1.5)
 [node name="Fairy11" parent="Agents" index="47" instance=ExtResource("3_01er3")]
 position = Vector2(86.5, -5.5)
 
-[node name="Beetle23" parent="Agents" index="48" instance=ExtResource("2_s7pkh")]
-position = Vector2(117.5, 12.5)
+[node name="Sukuna" parent="Agents" index="48" instance=ExtResource("7_ilse1")]
+position = Vector2(114.5, 13.5)
 
 [node name="RoomBoundaries" parent="." index="4"]
 visible = false
