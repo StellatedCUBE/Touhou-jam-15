@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://bsatxee60ibto"]
+[gd_scene load_steps=6 format=4 uid="uid://bsatxee60ibto"]
 
 [ext_resource type="PackedScene" uid="uid://cve1wciliwsfw" path="res://in_game/world.tscn" id="1_eme3a"]
 [ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="2_qvjf8"]
 [ext_resource type="PackedScene" uid="uid://b62jqmc8l58qp" path="res://in_game/agents/fairy/fairy.tscn" id="3_x0yn5"]
 [ext_resource type="PackedScene" uid="uid://dtfydnd7ojxtj" path="res://in_game/agents/dummy/dummy.tscn" id="4_k8hvo"]
+[ext_resource type="AudioStream" uid="uid://bwkkwwwbb4tjg" path="res://in_game/music/l1.mp3" id="5_ff82o"]
 
 [node name="World" instance=ExtResource("1_eme3a")]
 
@@ -88,3 +89,11 @@ position = Vector2(43.5, -10.5)
 
 [node name="RoomBoundaries" parent="." index="4"]
 position = Vector2(750, 360)
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="7"]
+process_mode = 3
+stream = ExtResource("5_ff82o")
+volume_db = -8.0
+autoplay = true
+playback_type = 1
+parameters/looping = true

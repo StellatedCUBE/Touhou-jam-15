@@ -160,8 +160,9 @@ position = Vector2(117.5, 12.5)
 visible = false
 position = Vector2(750, 376)
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="6"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="7"]
 process_mode = 3
 stream = ExtResource("2_uwfx6")
 autoplay = true
 playback_type = 1
+parameters/looping = true

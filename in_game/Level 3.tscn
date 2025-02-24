@@ -150,8 +150,9 @@ position = Vector2(53, 12.5)
 visible = false
 position = Vector2(750, 392)
 
-[node name="Music" type="AudioStreamPlayer" parent="." index="6"]
+[node name="Music" type="AudioStreamPlayer" parent="." index="7"]
 process_mode = 3
 stream = ExtResource("2_hvn5w")
 volume_db = -3.0
 autoplay = true
+parameters/looping = true
