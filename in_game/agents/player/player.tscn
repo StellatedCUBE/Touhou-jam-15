@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c6vwsua87in1e"]
+[gd_scene load_steps=24 format=3 uid="uid://c6vwsua87in1e"]
 
 [ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_hk1q4"]
 [ext_resource type="Texture2D" uid="uid://8yvbdys3xnht" path="res://in_game/agents/player/player.png" id="2_vmhip"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cdkht6weplswr" path="res://in_game/agents/player/cast_explosion.png" id="5_rlhs5"]
 [ext_resource type="AudioStream" uid="uid://d302ac3ifwq5d" path="res://in_game/agents/player/spin.wav" id="5_todgo"]
 [ext_resource type="AudioStream" uid="uid://8q0p8tsmnm5" path="res://in_game/agents/player/explosion/explosion.wav" id="7_mr6b1"]
+[ext_resource type="AudioStream" uid="uid://lfril1my53cl" path="res://in_game/agents/player/death.wav" id="10_7hvs7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_of7if"]
 atlas = ExtResource("2_vmhip")
@@ -154,3 +155,7 @@ frame_progress = 1.0
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="." index="9"]
 unique_name_in_owner = true
 stream = ExtResource("7_mr6b1")
+
+[node name="DeathSFX" type="AudioStreamPlayer" parent="." index="10"]
+unique_name_in_owner = true
+stream = ExtResource("10_7hvs7")

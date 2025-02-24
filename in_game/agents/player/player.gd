@@ -28,7 +28,20 @@ var step_anim_counter: int = 0
 var last_movement: int = 8
 var iframes: int = 0
 
+var dead_sprite: Texture2D = preload("res://in_game/agents/player/dead.png")
+
 func _physics_process(_delta: float) -> void:
+	if health <= 0:
+		sprite.visible = iframes % 2 == 0
+		spin_animation.visible = false
+		cast_explosion_animation.visible = false
+		if iframes > 0:
+			iframes -= 1
+			if iframes == 0:
+				get_tree().create_timer(0.4).timeout.connect(get_tree().root.get_node("World/%Fade").out)
+				get_tree().create_timer(1).timeout.connect(get_tree().reload_current_scene)
+		return
+	
 	var scale: float = agent.scale.x
 	var speed_mul: float = 1
 	var target_scale: float = misfortune_to_scale(misfortune)
@@ -124,10 +137,14 @@ func explode() -> void:
 	explosion_sfx.play()
 
 func damage(by: int) -> void:
-	if iframes == 0 and by > 0:
+	if iframes == 0 and by > 0 and health > 0:
 		health -= by
 		iframes = 20
 		damage_sfx.play()
+		if health <= 0:
+			agent.texture = dead_sprite
+			get_tree().root.get_node("World/Music").stop()
+			%DeathSFX.play()
 
 func grant_misfortune() -> void:
 	if misfortune < 20:
