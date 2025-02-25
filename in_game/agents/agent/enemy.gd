@@ -17,7 +17,8 @@ class_name Enemy
 
 var noise_x: FastNoiseLite = FastNoiseLite.new()
 var noise_y: FastNoiseLite = FastNoiseLite.new()
-var noise_t: float
+var noise_tx: float = 0
+var noise_ty: float = 0
 var sight_squared: float
 var bonk: int = 0
 
@@ -27,7 +28,12 @@ var reload_time: int
 
 func _ready() -> void:
 	sight_squared = sight * sight
-	reset_noise()
+	noise_x.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	noise_y.noise_type = FastNoiseLite.TYPE_SIMPLEX
+	noise_x.fractal_type = FastNoiseLite.FRACTAL_NONE
+	noise_y.fractal_type = FastNoiseLite.FRACTAL_NONE
+	noise_x.seed = randi()
+	noise_y.seed = randi()
 	%Area.connect("area_entered", hit)
 	reload_time = randi_range(0, fire_delay)
 
@@ -109,23 +115,20 @@ func fire_at(target: Vector2) -> void:
 	var p_instance: Projectile = instance.get_node("%Behaviour")
 	p_instance.velocity = agent.global_position.direction_to(target) * p_instance.speed
 
-func reset_noise():
-	noise_t = 0
-	noise_x.noise_type = FastNoiseLite.TYPE_SIMPLEX
-	noise_y.noise_type = FastNoiseLite.TYPE_SIMPLEX
-	noise_x.fractal_type = FastNoiseLite.FRACTAL_NONE
-	noise_y.fractal_type = FastNoiseLite.FRACTAL_NONE
-	noise_x.seed = randi()
-	noise_y.seed = randi()
-
 func square(x: float) -> float:
 	return x * x
 
 func wander() -> void:
-	var wander: Vector2 = Vector2(noise_x.get_noise_1d(noise_t), noise_y.get_noise_1d(noise_t)).normalized() * speed
-	noise_t += frequency
-	if not agent.move(wander):
-		reset_noise()
+	var wander: Vector2 = Vector2(noise_x.get_noise_1d(noise_tx), noise_y.get_noise_1d(noise_ty)).normalized() * speed
+	noise_tx += frequency
+	noise_ty += frequency
+	if not agent.move_x(wander.x, speed):
+		wander.y = speed * sign(wander.y)
+		noise_tx = 0
+		noise_x.seed = randi()
+	if not agent.move_y(wander.y, speed):
+		noise_ty = 0
+		noise_y.seed = randi()
 
 func _exit_tree() -> void:
 	if has_music:
