@@ -21,12 +21,13 @@ var bonk: int = 0
 
 var iframes: int = 0
 var knockback: Vector2 = Vector2.ZERO
-var reload_time: int = 0
+var reload_time: int
 
 func _ready() -> void:
 	sight_squared = sight * sight
 	reset_noise()
 	%Area.connect("area_entered", hit)
+	reload_time = randi_range(0, fire_delay)
 
 func take_damage(amount: int) -> void:
 	health -= amount
@@ -46,6 +47,7 @@ func hit(area: Area2D) -> void:
 		take_damage(1)
 		knockback = (agent.global_position - area.global_position).normalized() * knockback_speed
 		player.grant_misfortune()
+		reload_time = min(reload_time, iframes)
 	elif area.name == "ExplosionArea":
 		take_damage(10)
 	elif area.get_parent().name == "Player":
