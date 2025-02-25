@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://p7t4c2jpeg8v"]
+[gd_scene load_steps=9 format=3 uid="uid://p7t4c2jpeg8v"]
 
 [ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="1_ummcf"]
 [ext_resource type="Texture2D" uid="uid://dh0dfafnqnn5l" path="res://in_game/agents/suika/Suika.png" id="2_rmwtc"]
+[ext_resource type="Script" path="res://in_game/agents/suika/suika.gd" id="3_7ttdd"]
 [ext_resource type="PackedScene" uid="uid://b2hej8yiejl5c" path="res://in_game/agents/oni/projectile.tscn" id="3_nklmg"]
+[ext_resource type="AudioStream" uid="uid://deqdjhrqav8y0" path="res://in_game/music/boss.mp3" id="5_264qu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0pd4c"]
 atlas = ExtResource("2_rmwtc")
@@ -26,16 +28,31 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Oni" instance=ExtResource("1_ummcf")]
-scale = Vector2(2, 2)
+[node name="Suika" instance=ExtResource("1_ummcf")]
+scale = Vector2(3, 3)
 
 [node name="Animation" parent="." index="2"]
+position = Vector2(0, -0.125)
 scale = Vector2(0.03125, 0.03125)
 sprite_frames = SubResource("SpriteFrames_utvvn")
-frame_progress = 0.483278
+frame = 0
+frame_progress = 0.253523
 
 [node name="Behaviour" parent="." index="3"]
-health = 5
+script = ExtResource("3_7ttdd")
+spread = 15.0
+health = 10
 damage = 3
 projectile = ExtResource("3_nklmg")
-misfortune_required = 10
+fire_delay = 100
+misfortune_required = 20
+speed = 0.045
+frequency = 0.5
+
+[node name="Music" type="AudioStreamPlayer" parent="." index="4"]
+unique_name_in_owner = true
+stream = ExtResource("5_264qu")
+volume_db = -5.0
+autoplay = true
+playback_type = 1
+parameters/looping = true

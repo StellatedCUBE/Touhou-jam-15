@@ -31,6 +31,11 @@ func transition_to(target: Vector2) -> void:
 	transition_target = target
 	transitioning = true
 	get_tree().paused = true
+	var rect: Rect2 = Rect2(target, Vector2(width, height))
+	for agent: Agent in %Agents.get_children():
+		if rect.has_point(agent.global_position) and agent.get_node("%Music") != null:
+			get_node("/root/World/Music").process_mode = Node.PROCESS_MODE_DISABLED
+			return
 
 func update_agent_modes() -> void:
 	var rect: Rect2 = Rect2(map_pos, Vector2(width, height))

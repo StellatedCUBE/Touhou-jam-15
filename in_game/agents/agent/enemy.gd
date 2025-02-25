@@ -1,7 +1,9 @@
 extends Node
+class_name Enemy
 
 @onready var agent: Agent = get_parent()
 @onready var player: Agent = get_tree().root.get_node("World/%Player")
+@onready var has_music: bool = %Music != null
 
 @export var health: int = 1
 @export var damage: int = 1
@@ -49,7 +51,7 @@ func hit(area: Area2D) -> void:
 		player.grant_misfortune()
 		reload_time = min(reload_time, iframes)
 	elif area.name == "ExplosionArea":
-		take_damage(10)
+		take_damage(5)
 	elif area.get_parent().name == "Player":
 		area.get_node("%Behaviour").damage(damage)
 		knockback = (agent.global_position - area.global_position).normalized() * (knockback_speed / 2)
@@ -95,17 +97,20 @@ func _physics_process(_delta: float) -> void:
 		while true:
 			sample_pos = sample_pos.move_toward(player.global_position, 0.125)
 			if sample_pos == player.global_position:
-				reload_time = fire_delay
-				var instance: Node2D = projectile.instantiate()
-				agent.get_parent().add_child(instance)
-				agent.get_parent().move_child(instance, 0)
-				instance.global_position = agent.global_position
-				var p_instance: Projectile = instance.get_node("%Behaviour")
-				p_instance.velocity = agent.global_position.direction_to(player.global_position) * p_instance.speed
+				fire_at(player.global_position)
 				break
 			var data: TileData = agent.map.get_cell_tile_data(agent.map.local_to_map(agent.map.to_local(sample_pos)))
 			if data.get_custom_data("Solid") and not data.get_custom_data("AllowSmall"):
 				break
+
+func fire_at(target: Vector2) -> void:
+	reload_time = fire_delay
+	var instance: Node2D = projectile.instantiate()
+	agent.get_parent().add_child(instance)
+	agent.get_parent().move_child(instance, 0)
+	instance.global_position = agent.global_position
+	var p_instance: Projectile = instance.get_node("%Behaviour")
+	p_instance.velocity = agent.global_position.direction_to(target) * p_instance.speed
 
 func reset_noise():
 	noise_t = 0
@@ -118,3 +123,13 @@ func reset_noise():
 
 func square(x: float) -> float:
 	return x * x
+
+func _exit_tree() -> void:
+	if has_music:
+		var music: AudioStreamPlayer = get_node("/root/World/Music")
+		var target_volume: float = music.volume_db
+		music.volume_db = -100
+		music.process_mode = Node.PROCESS_MODE_ALWAYS
+		var tween: Tween = get_tree().create_tween()
+		tween.bind_node(music)
+		tween.tween_property(music, "volume_db", target_volume, 2.5)

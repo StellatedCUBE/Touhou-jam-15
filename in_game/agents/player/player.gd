@@ -23,6 +23,7 @@ class_name Player
 var spin_timer: int = 0
 var facing: int = 0
 var explosion: PackedScene = preload("res://in_game/agents/player/explosion/explosion.tscn")
+var previous_position: Vector2
 
 var step_anim_counter: int = 0
 var last_movement: int = 8
@@ -45,6 +46,7 @@ func _physics_process(_delta: float) -> void:
 	var scale: float = agent.scale.x
 	var speed_mul: float = 1
 	var target_scale: float = misfortune_to_scale(misfortune)
+	previous_position = agent.global_position
 	
 	if target_scale < scale:
 		scale = max(target_scale, scale - scale_speed)
@@ -103,13 +105,13 @@ func _physics_process(_delta: float) -> void:
 		step_anim_counter += 1
 		
 		if agent.global_position.x < camera.map_pos.x + 0.5:
-			camera.transition(Vector2.LEFT)
+			cam_move(Vector2.LEFT)
 		elif agent.global_position.y < camera.map_pos.y + 0.5:
-			camera.transition(Vector2.UP)
+			cam_move(Vector2.UP)
 		elif agent.global_position.x > camera.map_pos.x + camera.width - 0.5:
-			camera.transition(Vector2.RIGHT)
+			cam_move(Vector2.RIGHT)
 		elif agent.global_position.y > camera.map_pos.y + camera.height - 0.5:
-			camera.transition(Vector2.DOWN)
+			cam_move(Vector2.DOWN)
 	else:
 		step_anim_counter = 0
 		frame_y = 2
@@ -143,7 +145,11 @@ func damage(by: int) -> void:
 		damage_sfx.play()
 		if health <= 0:
 			agent.texture = dead_sprite
-			get_tree().root.get_node("World/Music").stop()
+			get_node("/root/World/Music").stop()
+			for agent: Node in get_node("/root/World/%Agents").get_children():
+				var music: AudioStreamPlayer = agent.get_node("%Music")
+				if music != null:
+					music.stop()
 			%DeathSFX.play()
 
 func grant_misfortune() -> void:
@@ -151,3 +157,9 @@ func grant_misfortune() -> void:
 		if misfortune_to_scale(misfortune) != misfortune_to_scale(misfortune + 1):
 			expand_sfx.play()
 		misfortune += 1
+
+func cam_move(by: Vector2) -> void:
+	if get_node("/root/World/Music").process_mode == Node.PROCESS_MODE_ALWAYS:
+		camera.transition(by)
+	else:
+		agent.global_position = previous_position
