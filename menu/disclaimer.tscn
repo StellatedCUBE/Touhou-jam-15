@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b84trhiats7b1"]
+
+[ext_resource type="PackedScene" uid="uid://beelhtp7thngo" path="res://pre_game/pre_level_1.tscn" id="1_jyo7s"]
+[ext_resource type="Texture2D" uid="uid://bekl0ycg7yb6a" path="res://menu/disclaimer.png" id="2_y0k4l"]
+
+[node name="Splash" instance=ExtResource("1_jyo7s")]
+texture = ExtResource("2_y0k4l")
+into = "res://menu/main_menu.tscn"
+timeout = 144

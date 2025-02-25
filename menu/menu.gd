@@ -14,6 +14,7 @@ func transition(to: int) -> void:
 func _ready() -> void:
 	transition(state)
 	transform()
+	MenuMusic.play_()
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_up") and transitions[state].x >= 0:

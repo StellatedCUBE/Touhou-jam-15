@@ -1,13 +1,16 @@
 extends Sprite2D
 
 @export var into: String
+@export var timeout: int = -1
 
 var fade_in: int = 8
 var fade_out: int = 0
 var t: int = 0
 
 func _ready() -> void:
+	RenderingServer.set_default_clear_color(Color.BLACK)
 	modulate.a = 0
+	MenuMusic.stop()
 
 func _physics_process(_delta: float) -> void:
 	t += 1
@@ -22,7 +25,7 @@ func _physics_process(_delta: float) -> void:
 		if fade_out > 8:
 			get_tree().change_scene_to_file(into)
 		fade_out += 1
-	elif $Input.consume_spin():
+	elif t == timeout or $Input.consume_spin():
 		fade_out = 1
 
 func _process(_delta: float) -> void:
