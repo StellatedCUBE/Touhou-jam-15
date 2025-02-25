@@ -75,10 +75,7 @@ func _physics_process(_delta: float) -> void:
 		knockback = Vector2.ZERO
 		var dsquared: float = agent.global_position.distance_squared_to(player.global_position)
 		if projectile != null or dsquared > sight_squared or bonk > 0 or player.get_node("%Behaviour").health <= 0:
-			var wander: Vector2 = Vector2(noise_x.get_noise_1d(noise_t), noise_y.get_noise_1d(noise_t)).normalized() * speed
-			noise_t += frequency
-			if not agent.move(wander):
-				reset_noise()
+			wander()
 			if bonk > 0:
 				bonk -= 1
 		elif dsquared < square((player.scale.x + 1) / 2):
@@ -123,6 +120,12 @@ func reset_noise():
 
 func square(x: float) -> float:
 	return x * x
+
+func wander() -> void:
+	var wander: Vector2 = Vector2(noise_x.get_noise_1d(noise_t), noise_y.get_noise_1d(noise_t)).normalized() * speed
+	noise_t += frequency
+	if not agent.move(wander):
+		reset_noise()
 
 func _exit_tree() -> void:
 	if has_music:

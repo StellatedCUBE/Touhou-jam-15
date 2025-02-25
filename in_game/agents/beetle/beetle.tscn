@@ -35,6 +35,6 @@ frame_progress = 0.354718
 [node name="Behaviour" parent="." index="3"]
 health = 3
 damage = 2
-speed = 0.06125
+speed = 0.0625
 frequency = 2.0
 sight = 7.0

@@ -89,7 +89,7 @@ func _physics_process(_delta: float) -> void:
 		explode()
 		
 	
-	spin_animation.visible = spin_timer > 0
+	spin_animation.visible = spin_timer > 0 and iframes % 2 == 0
 	spin_collider.disabled = spin_timer == 0
 	
 	cast_explosion_animation.visible = cast_explosion_animation.is_playing()

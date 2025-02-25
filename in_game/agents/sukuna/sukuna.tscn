@@ -1,39 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://d00dvjg80fin6"]
+[gd_scene load_steps=7 format=3 uid="uid://dru6cbt4j2bs6"]
 
-[ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="1_mlfrj"]
+[ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_xto4l"]
 [ext_resource type="Texture2D" uid="uid://m8bbw0skpg75" path="res://in_game/agents/sukuna/sukuna.png" id="2_u2ugv"]
+[ext_resource type="Script" path="res://in_game/agents/sukuna/sukuna.gd" id="3_e2p4m"]
+[ext_resource type="AudioStream" uid="uid://deqdjhrqav8y0" path="res://in_game/music/boss.mp3" id="3_mipg5"]
+[ext_resource type="AudioStream" uid="uid://cvkiqshma3qe2" path="res://in_game/agents/fairy/fire.wav" id="5_1ey8r"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ii2be"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqehd"]
 atlas = ExtResource("2_u2ugv")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_yvmvh"]
-atlas = ExtResource("2_u2ugv")
-region = Rect2(0, 16, 16, 16)
+[node name="Shinmyoumaru" instance=ExtResource("1_xto4l")]
+texture = SubResource("AtlasTexture_xqehd")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ry1op"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ii2be")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_yvmvh")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
+[node name="Sprite" parent="." index="1"]
+scale = Vector2(0.0625, 0.0625)
+texture = SubResource("AtlasTexture_xqehd")
 
-[node name="Beetle" instance=ExtResource("1_mlfrj")]
+[node name="Behaviour" type="Node" parent="." index="2"]
+unique_name_in_owner = true
+script = ExtResource("3_e2p4m")
+health = 10
+damage = 3
+knockback_speed = 0.12
+speed = 0.0625
+sight = 0.0
 
-[node name="Animation" parent="." index="2"]
-sprite_frames = SubResource("SpriteFrames_ry1op")
-frame_progress = 0.241486
+[node name="Music" type="AudioStreamPlayer" parent="." index="3"]
+unique_name_in_owner = true
+stream = ExtResource("3_mipg5")
+volume_db = -5.0
+autoplay = true
+playback_type = 1
+parameters/looping = true
 
-[node name="Behaviour" parent="." index="3"]
-health = 3
-damage = 2
-speed = 0.06125
-frequency = 2.0
-sight = 7.0
+[node name="ShrinkSFX" type="AudioStreamPlayer" parent="." index="4"]
+unique_name_in_owner = true
+stream = ExtResource("5_1ey8r")
