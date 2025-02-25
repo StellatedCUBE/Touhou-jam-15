@@ -106,12 +106,14 @@ func do_gate_check() -> void:
 	
 	var camera: Camera = %MainCamera
 	var flag: bool = false
+	var overhead: TileMapLayer = $Overhead
 	for x: int in range(floori(camera.map_pos.x), floori(camera.map_pos.x + camera.width)):
 		for y: int in range(floori(camera.map_pos.y), floori(camera.map_pos.y + camera.height)):
 			var cell: Vector2i = Vector2i(x, y)
 			if get_cell_tile_data(cell).get_custom_data("Gate"):
 				flag = true
 				set_cell(cell, get_cell_source_id(cell), get_cell_tile_data(cell).get_custom_data("DestroysInto"))
-		
+				if get_cell_tile_data(cell).get_custom_data("Overhead"):
+					overhead.set_cell(cell, 0, get_cell_atlas_coords(cell))
 		if flag:
 			%ClearSFX.play()
