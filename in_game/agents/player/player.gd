@@ -75,8 +75,10 @@ func _physics_process(_delta: float) -> void:
 		moving = agent.move_y(speed * speed_mul, adjust * scale)
 		facing = 0
 	
-	if input.shrink and misfortune > 0.125: misfortune -= 1
-	if input.expand: misfortune += 1
+	if Cheats.on:
+		health = 255
+		if input.shrink and misfortune > 0: misfortune -= 1
+		if input.expand and misfortune < 20: misfortune += 1
 	
 	if input.consume_spin() and spin_timer == 0:
 		spin_animation.play()

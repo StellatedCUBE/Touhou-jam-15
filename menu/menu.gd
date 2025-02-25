@@ -5,7 +5,11 @@ extends Sprite2D
 @export var destinations: Array[String] = []
 @export var state: int = 0
 
+var code: String = ""
+
 func transition(to: int) -> void:
+	if to < 0:
+		return
 	if state != to:
 		state = to
 		UISFX.play()
@@ -17,22 +21,32 @@ func _ready() -> void:
 	MenuMusic.play_()
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_up") and transitions[state].x >= 0:
+	if Input.is_action_just_pressed("ui_up"):
 		transition(transitions[state].x)
+		code += "u"
 		
-	if Input.is_action_just_pressed("ui_down") and transitions[state].y >= 0:
+	if Input.is_action_just_pressed("ui_down"):
 		transition(transitions[state].y)
+		code += "d"
 	
-	if Input.is_action_just_pressed("ui_left") and transitions[state].z >= 0:
+	if Input.is_action_just_pressed("ui_left"):
 		transition(transitions[state].z)
+		code += "l"
 	
-	if Input.is_action_just_pressed("ui_right") and transitions[state].w >= 0:
+	if Input.is_action_just_pressed("ui_right"):
 		transition(transitions[state].w)
+		code += "r"
 	
 	transform()
 	
+	if Input.is_action_just_pressed("explode"):
+		code += "x"
+	
 	if Input.is_action_just_pressed("spin"):
-		if destinations[state] == null or destinations[state] == "":
+		if code.ends_with("uuddlrlrx"):
+			Cheats.enable()
+			code = ""
+		elif destinations[state] == null or destinations[state] == "":
 			get_tree().quit()
 		else:
 			UISFX.play()
