@@ -20,5 +20,6 @@ func hit(area: Area2D) -> void:
 	agent.queue_free()
 
 func _physics_process(_delta: float) -> void:
+	agent.get_node("Area/Rect").disabled = false
 	if not agent.move(velocity):
 		agent.queue_free()
