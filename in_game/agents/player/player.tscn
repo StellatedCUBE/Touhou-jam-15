@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cjt1ov1qqpnl2" path="res://in_game/agents/agent/agent.tscn" id="1_hk1q4"]
 [ext_resource type="Texture2D" uid="uid://8yvbdys3xnht" path="res://in_game/agents/player/player.png" id="2_vmhip"]
-[ext_resource type="Script" path="res://in_game/agents/player/player.gd" id="3_dy4yo"]
+[ext_resource type="Script" uid="uid://bu553dcgti16c" path="res://in_game/agents/player/player.gd" id="3_dy4yo"]
 [ext_resource type="AudioStream" uid="uid://cus4k5e81t3vf" path="res://in_game/agents/player/damage.wav" id="4_aafwo"]
 [ext_resource type="AudioStream" uid="uid://os2p0uy5xhnd" path="res://in_game/agents/player/expand.wav" id="4_qd25p"]
 [ext_resource type="Texture2D" uid="uid://b0e3arqd7c80o" path="res://in_game/agents/player/spin.png" id="4_x37yo"]

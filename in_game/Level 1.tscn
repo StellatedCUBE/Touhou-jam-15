@@ -37,7 +37,7 @@ position = Vector2(9.5, -22.5)
 position = Vector2(6.5, -29.5)
 
 [node name="Onibi4" parent="Agents" index="7" instance=ExtResource("2_qvjf8")]
-position = Vector2(11, -25.5)
+position = Vector2(13.5, -25.5)
 
 [node name="Fairy4" parent="Agents" index="8" instance=ExtResource("3_x0yn5")]
 position = Vector2(14.5, -29.5)
