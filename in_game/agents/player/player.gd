@@ -18,6 +18,7 @@ class_name Player
 @export var scale_speed: float = 0.0625
 @export var misfortune: int = 0
 @export var health: int = 10
+@export var maxHP: int = 10
 @export var explosion_cost: int = 10
 
 var spin_timer: int = 0
@@ -153,6 +154,10 @@ func damage(by: int) -> void:
 				if music != null:
 					music.stop()
 			%DeathSFX.play()
+
+func addHealth(addHP):
+	health += addHP
+	health = clamp(health, 0, maxHP)
 
 func grant_misfortune() -> void:
 	if misfortune < 20:

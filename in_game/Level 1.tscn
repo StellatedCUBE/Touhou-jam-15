@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=4 uid="uid://bsatxee60ibto"]
+[gd_scene load_steps=7 format=4 uid="uid://bsatxee60ibto"]
 
 [ext_resource type="PackedScene" uid="uid://cve1wciliwsfw" path="res://in_game/world.tscn" id="1_eme3a"]
 [ext_resource type="PackedScene" uid="uid://s0pkviaj0tvi" path="res://in_game/agents/onibi/onibi.tscn" id="2_qvjf8"]
 [ext_resource type="PackedScene" uid="uid://b62jqmc8l58qp" path="res://in_game/agents/fairy/fairy.tscn" id="3_x0yn5"]
 [ext_resource type="PackedScene" uid="uid://dtfydnd7ojxtj" path="res://in_game/agents/dummy/dummy.tscn" id="4_k8hvo"]
 [ext_resource type="AudioStream" uid="uid://bwkkwwwbb4tjg" path="res://in_game/music/l1.mp3" id="5_ff82o"]
+[ext_resource type="PackedScene" uid="uid://ffw1wucip1cg" path="res://in_game/agents/heart/heart_pickup.tscn" id="6_4j3v3"]
 
 [node name="World" instance=ExtResource("1_eme3a")]
 
@@ -97,3 +98,8 @@ volume_db = -8.0
 autoplay = true
 playback_type = 1
 parameters/looping = true
+
+[node name="Pickups" type="Node" parent="." index="8"]
+
+[node name="HeartPickup" parent="Pickups" index="0" instance=ExtResource("6_4j3v3")]
+position = Vector2(23.5, -25.5)
