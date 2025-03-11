@@ -162,6 +162,7 @@ func addHealth(addHP):
 func grant_misfortune() -> void:
 	if misfortune < 20:
 		if misfortune_to_scale(misfortune) != misfortune_to_scale(misfortune + 1):
+			iframes = 20
 			expand_sfx.play()
 		misfortune += 1
 
